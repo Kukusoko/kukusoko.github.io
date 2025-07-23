@@ -1,90 +1,112 @@
 <!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KukuSoko Dashboard</title>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50 text-gray-800">
-  <div class="max-w-3xl mx-auto py-10 px-4">
-    <div class="text-center mb-6">
-      <img src="logo.png" alt="KukuSoko Logo" class="mx-auto h-20 mb-2">
-      <h1 class="text-3xl font-bold">KukuSoko 🐔</h1>
-      <p class="text-lg">Karibu kwa soko la kuku la kisasa</p>
-    </div><div class="bg-white p-6 rounded shadow mb-10">
-  <h2 class="text-xl font-semibold mb-4">📝 Jisajili kama Mkulima</h2>
-  <form id="farmerForm" class="space-y-4">
-    <input type="text" id="jina" placeholder="Jina Kamili" class="w-full border rounded px-3 py-2">
-    <input type="text" id="simu" placeholder="Nambari ya Simu" class="w-full border rounded px-3 py-2">
-    <input type="text" id="eneo" placeholder="Eneo (e.g. Lumakanda)" class="w-full border rounded px-3 py-2">
-    <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">Sajili</button>
-  </form>
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KukuSoko | Karibu Sokoni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        serverTimestamp,
+        query,
+        orderBy
+      } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";const firebaseConfig = {
+    apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
+    authDomain: "kukusoko.firebaseapp.com",
+    projectId: "kukusoko",
+    storageBucket: "kukusoko.firebasestorage.app",
+    messagingSenderId: "854606179651",
+    appId: "1:854606179651:web:9742df9941cc66536e93f6",
+    measurementId: "G-WW0DHDR43N"
+  };
 
-<div class="bg-white p-6 rounded shadow">
-  <h2 class="text-xl font-semibold mb-4">👥 Orodha ya Wakulima</h2>
-  <div class="overflow-x-auto">
-    <table class="w-full table-auto border">
-      <thead>
-        <tr class="bg-yellow-100">
-          <th class="px-4 py-2 border">Jina</th>
-          <th class="px-4 py-2 border">Simu</th>
-          <th class="px-4 py-2 border">Eneo</th>
-          <th class="px-4 py-2 border">Tarehe</th>
-        </tr>
-      </thead>
-      <tbody id="farmersTable"></tbody>
-    </table>
-  </div>
-</div>
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-  </div>  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
-      authDomain: "kukusoko.firebaseapp.com",
-      projectId: "kukusoko",
-      storageBucket: "kukusoko.firebasestorage.app",
-      messagingSenderId: "854606179651",
-      appId: "1:854606179651:web:9742df9941cc66536e93f6",
-      measurementId: "G-WW0DHDR43N"
-    };
+  const form = document.getElementById("farmerForm");
+  const tableBody = document.getElementById("farmersTableBody");
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+  async function loadFarmers() {
+    tableBody.innerHTML = "";
+    const q = query(collection(db, "farmers"), orderBy("timestamp", "desc"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const row = `
+        <tr class='border-b'>
+          <td class='p-2'>${data.name}</td>
+          <td class='p-2'>${data.phone}</td>
+          <td class='p-2'>${data.location}</td>
+          <td class='p-2'>${data.date}</td>
+        </tr>`;
+      tableBody.innerHTML += row;
+    });
+  }
 
-    const form = document.getElementById("farmerForm");
-    const farmersTable = document.getElementById("farmersTable");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = form.name.value;
+    const phone = form.phone.value;
+    const location = form.location.value;
+    const date = new Date().toISOString().split("T")[0];
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const jina = document.getElementById("jina").value;
-      const simu = document.getElementById("simu").value;
-      const eneo = document.getElementById("eneo").value;
-      const tarehe = new Date().toISOString().split("T")[0];
-
-      if (jina && simu && eneo) {
-        await db.collection("farmers").add({ jina, simu, eneo, tarehe });
-        form.reset();
-      }
+    await addDoc(collection(db, "farmers"), {
+      name,
+      phone,
+      location,
+      date,
+      timestamp: serverTimestamp()
     });
 
-    async function loadFarmers() {
-      const snapshot = await db.collection("farmers").orderBy("tarehe", "desc").get();
-      farmersTable.innerHTML = "";
-      snapshot.forEach(doc => {
-        const farmer = doc.data();
-        const row = `<tr>
-          <td class="border px-4 py-2">${farmer.jina}</td>
-          <td class="border px-4 py-2">${farmer.simu}</td>
-          <td class="border px-4 py-2">${farmer.eneo}</td>
-          <td class="border px-4 py-2">${farmer.tarehe}</td>
-        </tr>`;
-        farmersTable.innerHTML += row;
-      });
-    }
+    form.reset();
+    loadFarmers();
+  });
 
-    window.onload = loadFarmers;
-  </script></body>
+  loadFarmers();
+</script>
+
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <header class="bg-white shadow p-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <img src="logo.png" alt="KukuSoko Logo" class="w-10 h-10" />
+        <h1 class="text-2xl font-bold text-gray-700">KukuSoko</h1>
+      </div>
+      <p class="text-sm text-gray-500">Soko La Kuku | Chicken Market Hub</p>
+    </header><main class="max-w-4xl mx-auto p-4">
+  <section class="bg-white p-4 rounded shadow mb-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">📋 Sajili Mkulima Mpya / Register a New Farmer</h2>
+    <form id="farmerForm" class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <input type="text" name="name" placeholder="Jina | Name" class="p-2 border rounded" required />
+      <input type="tel" name="phone" placeholder="Simu | Phone" class="p-2 border rounded" required />
+      <input type="text" name="location" placeholder="Eneo | Location" class="p-2 border rounded" required />
+      <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded col-span-full hover:bg-green-700">➕ Sajili</button>
+    </form>
+  </section>
+
+  <section class="bg-white p-4 rounded shadow">
+    <h2 class="text-lg font-semibold mb-2 text-gray-700">👥 Wakulima Waliosajiliwa / Registered Farmers</h2>
+    <table class="w-full text-left border border-gray-200">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="p-2">Jina</th>
+          <th class="p-2">Simu</th>
+          <th class="p-2">Eneo</th>
+          <th class="p-2">Tarehe</th>
+        </tr>
+      </thead>
+      <tbody id="farmersTableBody"></tbody>
+    </table>
+  </section>
+</main>
+
+<footer class="text-center p-4 text-sm text-gray-500">
+  © 2025 KukuSoko. All rights reserved.
+</footer>
+
+  </body>
 </html>
