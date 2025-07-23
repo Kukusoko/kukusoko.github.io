@@ -1,45 +1,131 @@
-<!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to KukuSoko</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-    body {
-      background: #f8f9fa;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .hero {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1614696340114-d76580e19847?auto=format&fit=crop&w=1470&q=80') center center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-    }
-    .hero h1 {
-      font-size: 3rem;
-    }
-    .hero p {
-      font-size: 1.3rem;
-    }
-    .btn-primary {
-      background-color: #ff8800;
-      border: none;
-    }
-    .btn-primary:hover {
-      background-color: #ff6f00;
-    }
-  </style>
-</head>
-<body>
-  <section class="hero">
-    <div class="text-center">
-      <img src="kukusoko_logo_optimized.webp" alt="KukuSoko Logo" style="width: 140px; margin-bottom: 20px;">
-      <h1>Welcome to KukuSoko</h1>
-      <p>The #1 platform connecting chicken farmers with buyers</p>
-      <a href="dashboard.html" class="btn btn-primary btn-lg mt-3">Go to Dashboard</a>
-    </div>
-  </section>  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script></body>
-</html>
+""<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KukuSoko - Welcome</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+          url('kukusoko_logo_optimized.webp') no-repeat center center / cover;
+      }
+      header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        background: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+      }
+      header img {
+        height: 80px;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 500;
+      }
+      section {
+        min-height: 100vh;
+        padding: 100px 20px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .hero {
+        text-align: center;
+        background: transparent;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+      }
+      .hero a {
+        padding: 12px 25px;
+        background: #ff914d;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: 0.3s ease;
+      }
+      .hero a:hover {
+        background: #ff6d1f;
+      }
+      .features, .about, .contact {
+        background: transparent;
+        text-align: center;
+        padding: 60px 20px;
+      }
+      .features h2, .about h2, .contact h2 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+      }
+      .features p, .about p, .contact p {
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+      }
+      footer {
+        background: transparent;
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="kukusoko_logo_optimized.webp" alt="KukuSoko Logo" />
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header><section id="home" class="hero">
+  <h1>Welcome to KukuSoko</h1>
+  <p>Connecting Poultry Farmers and Buyers Seamlessly</p>
+  <a href="#features">Explore More</a>
+</section>
+
+<section id="features" class="features">
+  <h2>What We Offer</h2>
+  <p>Discover powerful tools to manage, market, and monitor your poultry sales and aggregation – all in one place.</p>
+</section>
+
+<section id="about" class="about">
+  <h2>About Us</h2>
+  <p>KukuSoko is a digital poultry marketplace built for farmers, aggregators, and buyers. We are passionate about efficiency, growth, and transparency in the poultry value chain.</p>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Get in Touch</h2>
+  <p>Reach out to us via <a href="mailto:kukusokoni@gmail.com" style="color: #ff914d;">kukusokoni@gmail.com</a> – we’d love to hear from you.</p>
+</section>
+
+<footer>
+  &copy; 2025 KukuSoko. All Rights Reserved.
+</footer>
+
+  </body>
+</html>"
