@@ -1,131 +1,166 @@
-""<!DOCTYPE html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KukuSoko | Empowering Poultry Farmers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }body {
+  color: #fff;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1598373182133-d3f540bf2612') no-repeat center center/cover;
+  min-height: 100vh;
+}
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KukuSoko - Welcome</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #fff;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-          url('kukusoko_logo_optimized.webp') no-repeat center center / cover;
-      }
-      header {
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        padding: 20px;
-        background: transparent;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1000;
-      }
-      header img {
-        height: 80px;
-      }
-      nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: 500;
-      }
-      section {
-        min-height: 100vh;
-        padding: 100px 20px 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      .hero {
-        text-align: center;
-        background: transparent;
-      }
-      .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-      }
-      .hero p {
-        font-size: 1.3rem;
-        margin-bottom: 30px;
-      }
-      .hero a {
-        padding: 12px 25px;
-        background: #ff914d;
-        color: white;
-        border: none;
-        border-radius: 30px;
-        font-size: 1rem;
-        text-decoration: none;
-        transition: 0.3s ease;
-      }
-      .hero a:hover {
-        background: #ff6d1f;
-      }
-      .features, .about, .contact {
-        background: transparent;
-        text-align: center;
-        padding: 60px 20px;
-      }
-      .features h2, .about h2, .contact h2 {
-        margin-bottom: 20px;
-        font-size: 2rem;
-      }
-      .features p, .about p, .contact p {
-        max-width: 700px;
-        margin: 0 auto;
-        font-size: 1.1rem;
-      }
-      footer {
-        background: transparent;
-        text-align: center;
-        padding: 20px;
-        font-size: 0.9rem;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <img src="kukusoko_logo_optimized.webp" alt="KukuSoko Logo" />
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header><section id="home" class="hero">
-  <h1>Welcome to KukuSoko</h1>
-  <p>Connecting Poultry Farmers and Buyers Seamlessly</p>
-  <a href="#features">Explore More</a>
-</section>
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 15px 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
 
-<section id="features" class="features">
-  <h2>What We Offer</h2>
-  <p>Discover powerful tools to manage, market, and monitor your poultry sales and aggregation – all in one place.</p>
-</section>
+.logo {
+  height: 80px;
+}
 
-<section id="about" class="about">
-  <h2>About Us</h2>
-  <p>KukuSoko is a digital poultry marketplace built for farmers, aggregators, and buyers. We are passionate about efficiency, growth, and transparency in the poultry value chain.</p>
-</section>
+nav a {
+  color: #fff;
+  margin-left: 25px;
+  text-decoration: none;
+  font-weight: 500;
+}
 
-<section id="contact" class="contact">
-  <h2>Get in Touch</h2>
-  <p>Reach out to us via <a href="mailto:kukusokoni@gmail.com" style="color: #ff914d;">kukusokoni@gmail.com</a> – we’d love to hear from you.</p>
-</section>
+section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
 
-<footer>
-  &copy; 2025 KukuSoko. All Rights Reserved.
-</footer>
+.hero {
+  text-align: center;
+  margin-top: 100px;
+}
 
-  </body>
-</html>"
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+}
+
+.hero button {
+  padding: 10px 25px;
+  font-size: 1em;
+  background-color: #ff9800;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.features, .about, .stats, .testimonials, .contact {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.features div, .testimonials blockquote, .stats div {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.stats div {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 0.9em;
+}
+
+  </style>
+</head><body>
+  <header>
+    <img src="https://kukusoko.github.io/assets/logo.png" alt="KukuSoko Logo" class="logo">
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>  <section class="hero" id="hero">
+    <h1>Welcome to KukuSoko</h1>
+    <p>Connecting Poultry Farmers to a Smarter Market</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">Get Started</button>
+  </section>  <section class="features" id="features">
+    <h2>Features</h2>
+    <div>✅ Real-time chicken listing</div>
+    <div>✅ Direct farmer-buyer connection</div>
+    <div>✅ Multilingual platform (Swahili + English)</div>
+  </section>  <section class="about" id="about">
+    <h2>About Us</h2>
+    <p>KukuSoko is built to empower poultry farmers by making their sales and aggregation efficient, visible, and profitable.</p>
+  </section>  <section class="stats">
+    <h2>Our Impact</h2>
+    <div>🐓 1,500+ Chickens Traded</div>
+    <div>👥 300+ Farmers Empowered</div>
+    <div>📈 99% Fulfillment Rate</div>
+  </section>  <section class="testimonials" id="testimonials">
+    <h2>What Farmers Say</h2>
+    <blockquote>"Nilipata mteja ndani ya siku moja. KukuSoko imekuwa mkombozi kwangu!" — Mama Akinyi</blockquote>
+    <blockquote>"Easy to use and fast. I recommend it to all farmers." — John W.</blockquote>
+  </section>  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitForm(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>  <footer>
+    &copy; 2025 KukuSoko. All rights reserved.
+  </footer>  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Thank you for reaching out! We will get back to you soon.');
+    }
+  </script></body></html>
