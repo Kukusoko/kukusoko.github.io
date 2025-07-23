@@ -1,130 +1,137 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KukuSoko | Empowering Poultry Trade</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KukuSoko - Your Chicken Market Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f9f9f9;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    body {
+      background-color: #fefefe;
       color: #333;
     }
+
     header {
-      background: #111;
+      background-color: #1a1a1a;
       color: white;
-      padding: 20px 40px;
+      padding: 1.2rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
-    header img {
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
       height: 60px;
+      margin-right: 10px;
     }
+
     nav a {
       color: white;
-      margin-left: 20px;
       text-decoration: none;
-      font-weight: 500;
+      margin-left: 20px;
+      font-weight: bold;
     }
+
+    nav a:hover {
+      color: #ffc107;
+    }
+
     .hero {
-      background: url('https://images.unsplash.com/photo-1603089297485-08b4dcaef042?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding: 4rem 2rem;
       text-align: center;
+      background: url('https://images.unsplash.com/photo-1598514982890-6f41b2a0aafc?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
       color: white;
     }
+
     .hero h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px #000;
     }
+
     .hero p {
-      font-size: 1.2em;
-      max-width: 600px;
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 2px #000;
     }
-    .cta-btn {
-      background: #f57c00;
-      color: white;
-      padding: 15px 30px;
-      margin-top: 30px;
-      font-size: 1em;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .cta-btn:hover {
-      background: #e65100;
-    }
-    .features {
-      padding: 60px 40px;
+
+    .section {
+      padding: 3rem 2rem;
       text-align: center;
     }
-    .features h2 {
-      margin-bottom: 40px;
-      font-size: 2.2em;
+
+    .section h2 {
+      margin-bottom: 1rem;
+      color: #1a1a1a;
     }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
+
+    .section p {
+      max-width: 700px;
+      margin: auto;
+      color: #555;
     }
-    .feature-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .feature-box img {
-      width: 50px;
-      margin-bottom: 15px;
-    }
+
     footer {
-      background: #111;
+      background: #1a1a1a;
       color: white;
       text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://kukusoko.github.io/assets/kukusoko-logo.png" alt="KukuSoko Logo" />
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/kukusoko/assets/main/logo.png" alt="KukuSoko Logo">
+    </div>
     <nav>
+      <a href="#about">About</a>
       <a href="#features">Features</a>
-      <a href="https://kukusoko.github.io">Dashboard</a>
       <a href="#contact">Contact</a>
     </nav>
-  </header>  <section class="hero">
-    <h1>Connecting Farmers to Markets</h1>
-    <p>Digital platform to empower poultry aggregation, transparency, and fair trade for local chicken markets.</p>
-    <a href="https://kukusoko.github.io"><button class="cta-btn">Enter Dashboard</button></a>
-  </section>  <section class="features" id="features">
-    <h2>Why KukuSoko?</h2>
-    <div class="features-grid">
-      <div class="feature-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910791.png" alt="Farmer Icon" />
-        <h3>Farmer Focused</h3>
-        <p>Tools designed with local poultry farmers in mind — simple, mobile-friendly and offline-ready.</p>
-      </div>
-      <div class="feature-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/2554/2554833.png" alt="Analytics Icon" />
-        <h3>Real-Time Insights</h3>
-        <p>Track sales, stock levels, and aggregation trends in real-time with your personal dashboard.</p>
-      </div>
-      <div class="feature-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/4285/4285908.png" alt="Language Icon" />
-        <h3>Multi-language Support</h3>
-        <p>Switch between Swahili and English instantly. Localized for real use in Kenya.</p>
-      </div>
-    </div>
-  </section>  <footer id="contact">
-    &copy; 2025 KukuSoko. All rights reserved. | Email: kukusokoni@gmail.com
+  </header>
+
+  <section class="hero">
+    <h1>Karibu KukuSoko</h1>
+    <p>Connecting Farmers, Aggregators & Buyers in One Digital Market</p>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About KukuSoko</h2>
+    <p>KukuSoko ni jukwaa la kisasa linalowezesha wakulima kuuza kuku wao moja kwa moja kwa wanunuzi au mawakala. Tunahakikisha bei nzuri, taarifa sahihi na urahisi wa mawasiliano kati ya pande zote.</p>
+  </section>
+
+  <section class="section" id="features">
+    <h2>Why Choose Us?</h2>
+    <p>Real-time listings, digital records, aggregated supply chain, and seamless communication — all on your phone!</p>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions or suggestions? Tuma ujumbe kupitia <a href="mailto:kukusokoni@gmail.com">kukusokoni@gmail.com</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 KukuSoko. All rights reserved.
   </footer>
 </body>
-  </html>
+</html>
