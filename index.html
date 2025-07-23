@@ -1,12 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KukuSoko</title>
-</head>
-<body>
-  <h1>Karibu KukuSoko 🐔</h1>
-  <p>This is the official dashboard.</p>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KukuSoko Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }body {
+  background-color: #f6f7f9;
+  color: #333;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+header img {
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #222;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #aaa;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.4rem;
+  }
+}
+
+  </style>
+</head><body>
+  <header>
+    <img src="logo.png" alt="KukuSoko Logo">
+    <h1>KukuSoko Dashboard</h1>
+  </header>  <main class="container">
+    <div class="card">
+      <h2>📦 Daily Deliveries</h2>
+      <p>Keep track of all kuku deliveries made today and their totals.</p>
+    </div><div class="card">
+  <h2>👥 Farmers</h2>
+  <p>View all registered farmers and their delivery stats.</p>
+</div>
+
+<div class="card">
+  <h2>📊 Aggregation Summary</h2>
+  <p>See weekly and monthly totals of chickens collected and sold.</p>
+</div>
+
+<div class="card">
+  <h2>📍 Locations</h2>
+  <p>Track which areas are supplying the most and plan logistics.</p>
+</div>
+
+  </main>  <footer>
+    <p>&copy; 2025 KukuSoko. All rights reserved.</p>
+  </footer>
+</body></html>
