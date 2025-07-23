@@ -2,161 +2,105 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KukuSoko - Home</title>
+    <title>KukuSoko - Connecting Poultry Farmers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+      body {
+        background: transparent;
+        color: #333;
+        line-height: 1.5;
         scroll-behavior: smooth;
-        font-family: 'Poppins', sans-serif;
-      }body {
-    background-color: transparent;
-    color: #222;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
-    z-index: 999;
-  }
-
-  header img {
-    height: 60px;
-  }
-
-  nav a {
-    margin: 0 1rem;
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-
-  nav a:hover {
-    color: #2e8b57;
-  }
-
-  section {
-    padding: 100px 20px 80px;
-    min-height: 100vh;
-  }
-
-  .hero {
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
-  }
-
-  .btn {
-    padding: 0.75rem 1.5rem;
-    background: #2e8b57;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    margin-top: 1.5rem;
-    transition: background 0.3s;
-  }
-
-  .btn:hover {
-    background: #256b45;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: transparent;
-    font-size: 0.9rem;
-  }
-
-  .content-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-</style>
-
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background: rgba(255, 255, 255, 0.95);
+        z-index: 1000;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      }
+      header img {
+        height: 50px;
+      }
+      nav a {
+        margin-left: 1.5rem;
+        text-decoration: none;
+        color: #444;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      section {
+        padding: 3rem 2rem;
+        max-width: 960px;
+        margin: 5rem auto 3rem;
+      }
+      section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: #222;
+      }
+      section p {
+        font-size: 1rem;
+        color: #555;
+      }
+      footer {
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 0.85rem;
+        color: #777;
+      }
+    </style>
   </head>
   <body>
     <header>
       <img src="logo.png" alt="KukuSoko Logo" />
       <nav>
-        <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#features">Features</a>
         <a href="#contact">Contact</a>
       </nav>
-    </header><section id="home" class="hero">
-  <div class="content-wrapper">
-    <h1>Welcome to KukuSoko</h1>
-    <p>A digital poultry market solution bridging farmers, buyers, and agents under one smart system.</p>
-    <a href="#contact" class="btn">Get Started</a>
-  </div>
+    </header><section id="home">
+  <h2>Welcome to KukuSoko</h2>
+  <p>Empowering poultry farmers with access to markets, insights, and growth.</p>
 </section>
 
 <section id="about">
-  <div class="content-wrapper">
-    <h2 class="section-title">About Us</h2>
-    <p>
-      KukuSoko is designed to streamline poultry trade operations across Kenya by digitizing aggregation,
-      ordering, and delivery systems. Built with farmers in mind, the platform supports real-time tracking,
-      smart dashboards, and simplified access to market.
-    </p>
-  </div>
+  <h2>About KukuSoko</h2>
+  <p>
+    KukuSoko is a digital marketplace connecting poultry farmers, aggregators,
+    and buyers in a simplified, mobile-friendly ecosystem.
+  </p>
 </section>
 
 <section id="features">
-  <div class="content-wrapper">
-    <h2 class="section-title">Core Features</h2>
-    <ul>
-      <li>📦 Aggregation Dashboard</li>
-      <li>📊 Real-Time Reporting</li>
-      <li>📱 Mobile-first Design</li>
-      <li>🌍 Multilanguage Toggle</li>
-      <li>🔒 Secure Firebase Backend</li>
-    </ul>
-  </div>
+  <h2>Platform Features</h2>
+  <p>
+    🐣 Farm Profiles<br />📈 Market Prices<br />📦 Order Management<br />📍 Aggregator Mapping
+  </p>
 </section>
 
 <section id="contact">
-  <div class="content-wrapper">
-    <h2 class="section-title">Contact Us</h2>
-    <p>Email: <a href="mailto:kukusokoni@gmail.com">kukusokoni@gmail.com</a></p>
-    <p>Location: Lumakanda, Kenya</p>
-  </div>
+  <h2>Get in Touch</h2>
+  <p>Email us at <strong>kukusokoni@gmail.com</strong> or follow us on social media.</p>
 </section>
 
 <footer>
-  © 2025 KukuSoko. All rights reserved.
+  &copy; 2025 KukuSoko. All rights reserved.
 </footer>
 
   </body>
