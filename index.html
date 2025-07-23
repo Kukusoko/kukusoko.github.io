@@ -3,135 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KukuSoko - Your Chicken Market Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Nunito', sans-serif;
-    }
-
-    body {
-      background-color: #fefefe;
-      color: #333;
-    }
-
-    header {
-      background-color: #1a1a1a;
-      color: white;
-      padding: 1.2rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo img {
-      height: 60px;
-      margin-right: 10px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: #ffc107;
-    }
-
-    .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: url('https://images.unsplash.com/photo-1598514982890-6f41b2a0aafc?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-      color: white;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px #000;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      text-shadow: 1px 1px 2px #000;
-    }
-
-    .section {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .section h2 {
-      margin-bottom: 1rem;
-      color: #1a1a1a;
-    }
-
-    .section p {
-      max-width: 700px;
-      margin: auto;
-      color: #555;
-    }
-
-    footer {
-      background: #1a1a1a;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+  <title>KukuSoko Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
-<body>
-  <header>
-    <div class="logo">
-      <img src="https://raw.githubusercontent.com/kukusoko/assets/main/logo.png" alt="KukuSoko Logo">
+<body class="bg-light">
+
+  <div class="container py-4">
+    <div class="text-center mb-4">
+      <img src="kukusoko_logo_optimized.webp" alt="KukuSoko Logo" style="height: 90px;" />
     </div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#features">Features</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h1>Karibu KukuSoko</h1>
-    <p>Connecting Farmers, Aggregators & Buyers in One Digital Market</p>
-  </section>
+    <!-- Dashboard Stats -->
+    <div class="row text-center mb-4">
+      <div class="col-md-4">
+        <div class="bg-primary text-white p-3 rounded shadow-sm">
+          <h4 id="totalRecords">0</h4>
+          <p>Total Records</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="bg-success text-white p-3 rounded shadow-sm">
+          <h4 id="liveRecords">0</h4>
+          <p>Live Listings</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="bg-warning text-white p-3 rounded shadow-sm">
+          <h4 id="deletedRecords">0</h4>
+          <p>Deleted</p>
+        </div>
+      </div>
+    </div>
 
-  <section class="section" id="about">
-    <h2>About KukuSoko</h2>
-    <p>KukuSoko ni jukwaa la kisasa linalowezesha wakulima kuuza kuku wao moja kwa moja kwa wanunuzi au mawakala. Tunahakikisha bei nzuri, taarifa sahihi na urahisi wa mawasiliano kati ya pande zote.</p>
-  </section>
+    <!-- Search -->
+    <div class="mb-3">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search by name or price" />
+    </div>
 
-  <section class="section" id="features">
-    <h2>Why Choose Us?</h2>
-    <p>Real-time listings, digital records, aggregated supply chain, and seamless communication — all on your phone!</p>
-  </section>
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Chicken Name</th>
+            <th>Type</th>
+            <th>Price (Ksh)</th>
+            <th>Farmer</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="dataTableBody">
+          <!-- Rows will be populated here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-  <section class="section" id="contact">
-    <h2>Contact Us</h2>
-    <p>Have questions or suggestions? Tuma ujumbe kupitia <a href="mailto:kukusokoni@gmail.com">kukusokoni@gmail.com</a></p>
-  </section>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
+      authDomain: "kukusoko.firebaseapp.com",
+      projectId: "kukusoko",
+      storageBucket: "kukusoko.firebasestorage.app",
+      messagingSenderId: "854606179651",
+      appId: "1:854606179651:web:9742df9941cc66536e93f6",
+      measurementId: "G-WW0DHDR43N"
+    };
 
-  <footer>
-    &copy; 2025 KukuSoko. All rights reserved.
-  </footer>
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const dataTableBody = document.getElementById("dataTableBody");
+    const searchInput = document.getElementById("searchInput");
+    const totalRecords = document.getElementById("totalRecords");
+    const liveRecords = document.getElementById("liveRecords");
+    const deletedRecords = document.getElementById("deletedRecords");
+
+    function renderTable(data) {
+      dataTableBody.innerHTML = "";
+      let count = 0;
+      data.forEach(doc => {
+        const item = doc.data();
+        count++;
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${count}</td>
+          <td>${item.name}</td>
+          <td>${item.type}</td>
+          <td>${item.price}</td>
+          <td>${item.farmer}</td>
+          <td><button class="btn btn-sm btn-danger" onclick="deleteRecord('${doc.id}')">Delete</button></td>
+        `;
+        dataTableBody.appendChild(row);
+      });
+
+      totalRecords.innerText = count;
+      liveRecords.innerText = count;
+    }
+
+    function deleteRecord(id) {
+      db.collection("chickens").doc(id).delete().then(() => {
+        console.log("Deleted:", id);
+        fetchData();
+      });
+    }
+
+    function fetchData() {
+      db.collection("chickens").get().then(snapshot => {
+        const data = snapshot.docs;
+        renderTable(data);
+      });
+    }
+
+    searchInput.addEventListener("input", () => {
+      const term = searchInput.value.toLowerCase();
+      db.collection("chickens").get().then(snapshot => {
+        const filtered = snapshot.docs.filter(doc => {
+          const item = doc.data();
+          return item.name.toLowerCase().includes(term) || item.price.toString().includes(term);
+        });
+        renderTable(filtered);
+      });
+    });
+
+    fetchData();
+  </script>
+
 </body>
 </html>
