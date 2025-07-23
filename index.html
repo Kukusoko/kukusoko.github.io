@@ -1,112 +1,142 @@
-<!DOCTYPE html><html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KukuSoko | Karibu Sokoni</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-      import {
-        getFirestore,
-        collection,
-        addDoc,
-        getDocs,
-        serverTimestamp,
-        query,
-        orderBy
-      } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";const firebaseConfig = {
-    apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
-    authDomain: "kukusoko.firebaseapp.com",
-    projectId: "kukusoko",
-    storageBucket: "kukusoko.firebasestorage.app",
-    messagingSenderId: "854606179651",
-    appId: "1:854606179651:web:9742df9941cc66536e93f6",
-    measurementId: "G-WW0DHDR43N"
-  };
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KukuSoko Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head><body class="bg-gray-50 min-h-screen font-sans">
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <img src="logo.png" alt="KukuSoko Logo" class="h-16 w-16" />
+      <h1 class="text-2xl font-bold text-green-700">KukuSoko</h1>
+    </div>
+    <div>
+      <select id="languageSelect" class="border rounded px-2 py-1">
+        <option value="en">English</option>
+        <option value="sw">Kiswahili</option>
+      </select>
+    </div>
+  </header>  <main class="max-w-4xl mx-auto p-4">
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2" id="formTitle">Register Farmer</h2>
+      <form id="farmerForm" class="space-y-4">
+        <input type="text" id="name" placeholder="Farmer Name" required class="w-full border p-2 rounded" />
+        <input type="text" id="location" placeholder="Location" required class="w-full border p-2 rounded" />
+        <input type="text" id="contact" placeholder="Phone Number" required class="w-full border p-2 rounded" />
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Submit</button>
+      </form>
+    </section><section class="mb-4">
+  <input type="text" id="searchInput" placeholder="Search Farmers..." class="w-full p-2 border rounded mb-4" />
+  <div class="mb-4 text-gray-700" id="dashboardStats">Loading stats...</div>
+  <table class="min-w-full bg-white shadow-md rounded">
+    <thead class="bg-green-600 text-white">
+      <tr>
+        <th class="py-2 px-4 text-left">Name</th>
+        <th class="py-2 px-4 text-left">Location</th>
+        <th class="py-2 px-4 text-left">Contact</th>
+        <th class="py-2 px-4 text-left">Action</th>
+      </tr>
+    </thead>
+    <tbody id="farmerTable" class="divide-y divide-gray-200"></tbody>
+  </table>
+</section>
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  </main>  <script>
+    const translations = {
+      en: {
+        register: "Register Farmer",
+        submit: "Submit",
+        search: "Search Farmers...",
+        stats: (count) => `Total Farmers: ${count}`,
+        delete: "Delete"
+      },
+      sw: {
+        register: "Sajili Mkulima",
+        submit: "Tuma",
+        search: "Tafuta Wakulima...",
+        stats: (count) => `Wakulima Jumla: ${count}`,
+        delete: "Futa"
+      }
+    };
 
-  const form = document.getElementById("farmerForm");
-  const tableBody = document.getElementById("farmersTableBody");
+    const firebaseConfig = {
+      apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
+      authDomain: "kukusoko.firebaseapp.com",
+      projectId: "kukusoko",
+      storageBucket: "kukusoko.appspot.com",
+      messagingSenderId: "854606179651",
+      appId: "1:854606179651:web:9742df9941cc66536e93f6",
+      measurementId: "G-WW0DHDR43N"
+    };
 
-  async function loadFarmers() {
-    tableBody.innerHTML = "";
-    const q = query(collection(db, "farmers"), orderBy("timestamp", "desc"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      const row = `
-        <tr class='border-b'>
-          <td class='p-2'>${data.name}</td>
-          <td class='p-2'>${data.phone}</td>
-          <td class='p-2'>${data.location}</td>
-          <td class='p-2'>${data.date}</td>
-        </tr>`;
-      tableBody.innerHTML += row;
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const form = document.getElementById("farmerForm");
+    const table = document.getElementById("farmerTable");
+    const searchInput = document.getElementById("searchInput");
+    const stats = document.getElementById("dashboardStats");
+    const langSelect = document.getElementById("languageSelect");
+    let currentLang = 'en';
+
+    function translateUI() {
+      document.getElementById("formTitle").innerText = translations[currentLang].register;
+      form.querySelector("button").innerText = translations[currentLang].submit;
+      searchInput.placeholder = translations[currentLang].search;
+      updateStatsUI();
+    }
+
+    function updateStatsUI(count = 0) {
+      stats.innerText = translations[currentLang].stats(count);
+    }
+
+    async function loadFarmers() {
+      const snapshot = await db.collection("farmers").orderBy("createdAt", "desc").get();
+      const farmers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      displayFarmers(farmers);
+      updateStatsUI(farmers.length);
+    }
+
+    function displayFarmers(farmers) {
+      table.innerHTML = "";
+      const search = searchInput.value.toLowerCase();
+      farmers.filter(f => f.name.toLowerCase().includes(search)).forEach(farmer => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="py-2 px-4">${farmer.name}</td>
+          <td class="py-2 px-4">${farmer.location}</td>
+          <td class="py-2 px-4">${farmer.contact}</td>
+          <td class="py-2 px-4">
+            <button onclick="deleteFarmer('${farmer.id}')" class="bg-red-500 text-white px-2 py-1 rounded">${translations[currentLang].delete}</button>
+          </td>`;
+        table.appendChild(row);
+      });
+    }
+
+    async function deleteFarmer(id) {
+      await db.collection("farmers").doc(id).delete();
+      loadFarmers();
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const location = document.getElementById("location").value;
+      const contact = document.getElementById("contact").value;
+
+      await db.collection("farmers").add({ name, location, contact, createdAt: new Date() });
+      form.reset();
+      loadFarmers();
     });
-  }
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = form.name.value;
-    const phone = form.phone.value;
-    const location = form.location.value;
-    const date = new Date().toISOString().split("T")[0];
-
-    await addDoc(collection(db, "farmers"), {
-      name,
-      phone,
-      location,
-      date,
-      timestamp: serverTimestamp()
+    searchInput.addEventListener("input", loadFarmers);
+    langSelect.addEventListener("change", (e) => {
+      currentLang = e.target.value;
+      translateUI();
+      loadFarmers();
     });
 
-    form.reset();
+    translateUI();
     loadFarmers();
-  });
-
-  loadFarmers();
-</script>
-
-  </head>
-  <body class="bg-gray-100 font-sans">
-    <header class="bg-white shadow p-4 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <img src="logo.png" alt="KukuSoko Logo" class="w-10 h-10" />
-        <h1 class="text-2xl font-bold text-gray-700">KukuSoko</h1>
-      </div>
-      <p class="text-sm text-gray-500">Soko La Kuku | Chicken Market Hub</p>
-    </header><main class="max-w-4xl mx-auto p-4">
-  <section class="bg-white p-4 rounded shadow mb-6">
-    <h2 class="text-xl font-semibold mb-4 text-gray-700">📋 Sajili Mkulima Mpya / Register a New Farmer</h2>
-    <form id="farmerForm" class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      <input type="text" name="name" placeholder="Jina | Name" class="p-2 border rounded" required />
-      <input type="tel" name="phone" placeholder="Simu | Phone" class="p-2 border rounded" required />
-      <input type="text" name="location" placeholder="Eneo | Location" class="p-2 border rounded" required />
-      <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded col-span-full hover:bg-green-700">➕ Sajili</button>
-    </form>
-  </section>
-
-  <section class="bg-white p-4 rounded shadow">
-    <h2 class="text-lg font-semibold mb-2 text-gray-700">👥 Wakulima Waliosajiliwa / Registered Farmers</h2>
-    <table class="w-full text-left border border-gray-200">
-      <thead class="bg-gray-100">
-        <tr>
-          <th class="p-2">Jina</th>
-          <th class="p-2">Simu</th>
-          <th class="p-2">Eneo</th>
-          <th class="p-2">Tarehe</th>
-        </tr>
-      </thead>
-      <tbody id="farmersTableBody"></tbody>
-    </table>
-  </section>
-</main>
-
-<footer class="text-center p-4 text-sm text-gray-500">
-  © 2025 KukuSoko. All rights reserved.
-</footer>
-
-  </body>
-</html>
+  </script></body></html>
