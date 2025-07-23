@@ -1,97 +1,90 @@
 <!DOCTYPE html><html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KukuSoko Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-  </head>
-  <body class="bg-gray-50 text-gray-800">
-    <header class="bg-white shadow p-4 flex items-center justify-between">
-      <h1 class="text-2xl font-bold text-green-700">KukuSoko</h1>
-    </header><main class="p-4">
-  <section class="bg-white p-4 rounded shadow mb-6">
-    <h2 class="text-xl font-semibold mb-2">Jisajili kama Mkulima</h2>
-    <form id="farmerForm" class="grid grid-cols-1 gap-4 md:grid-cols-3">
-      <input type="text" id="name" placeholder="Jina" required class="border p-2 rounded" />
-      <input type="text" id="phone" placeholder="Simu" required class="border p-2 rounded" />
-      <input type="text" id="location" placeholder="Eneo" required class="border p-2 rounded" />
-      <button type="submit" class="col-span-full bg-green-600 text-white px-4 py-2 rounded">Sajili</button>
-    </form>
-  </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KukuSoko Dashboard</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <div class="max-w-3xl mx-auto py-10 px-4">
+    <div class="text-center mb-6">
+      <img src="logo.png" alt="KukuSoko Logo" class="mx-auto h-20 mb-2">
+      <h1 class="text-3xl font-bold">KukuSoko 🐔</h1>
+      <p class="text-lg">Karibu kwa soko la kuku la kisasa</p>
+    </div><div class="bg-white p-6 rounded shadow mb-10">
+  <h2 class="text-xl font-semibold mb-4">📝 Jisajili kama Mkulima</h2>
+  <form id="farmerForm" class="space-y-4">
+    <input type="text" id="jina" placeholder="Jina Kamili" class="w-full border rounded px-3 py-2">
+    <input type="text" id="simu" placeholder="Nambari ya Simu" class="w-full border rounded px-3 py-2">
+    <input type="text" id="eneo" placeholder="Eneo (e.g. Lumakanda)" class="w-full border rounded px-3 py-2">
+    <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">Sajili</button>
+  </form>
+</div>
 
-  <section class="bg-white p-4 rounded shadow">
-    <h2 class="text-xl font-semibold mb-4">Wakulima Waliosajiliwa</h2>
-    <div class="overflow-x-auto">
-      <table class="min-w-full table-auto">
-        <thead>
-          <tr class="bg-green-100">
-            <th class="px-4 py-2">Jina</th>
-            <th class="px-4 py-2">Simu</th>
-            <th class="px-4 py-2">Eneo</th>
-            <th class="px-4 py-2">Tarehe</th>
-          </tr>
-        </thead>
-        <tbody id="farmerList"></tbody>
-      </table>
-    </div>
-  </section>
-</main>
+<div class="bg-white p-6 rounded shadow">
+  <h2 class="text-xl font-semibold mb-4">👥 Orodha ya Wakulima</h2>
+  <div class="overflow-x-auto">
+    <table class="w-full table-auto border">
+      <thead>
+        <tr class="bg-yellow-100">
+          <th class="px-4 py-2 border">Jina</th>
+          <th class="px-4 py-2 border">Simu</th>
+          <th class="px-4 py-2 border">Eneo</th>
+          <th class="px-4 py-2 border">Tarehe</th>
+        </tr>
+      </thead>
+      <tbody id="farmersTable"></tbody>
+    </table>
+  </div>
+</div>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
-    authDomain: "kukusoko.firebaseapp.com",
-    projectId: "kukusoko",
-    storageBucket: "kukusoko.firebasestorage.app",
-    messagingSenderId: "854606179651",
-    appId: "1:854606179651:web:9742df9941cc66536e93f6",
-    measurementId: "G-WW0DHDR43N"
-  };
+  </div>  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
+      authDomain: "kukusoko.firebaseapp.com",
+      projectId: "kukusoko",
+      storageBucket: "kukusoko.firebasestorage.app",
+      messagingSenderId: "854606179651",
+      appId: "1:854606179651:web:9742df9941cc66536e93f6",
+      measurementId: "G-WW0DHDR43N"
+    };
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-  const form = document.getElementById("farmerForm");
-  const farmerList = document.getElementById("farmerList");
+    const form = document.getElementById("farmerForm");
+    const farmersTable = document.getElementById("farmersTable");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const location = document.getElementById("location").value;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const jina = document.getElementById("jina").value;
+      const simu = document.getElementById("simu").value;
+      const eneo = document.getElementById("eneo").value;
+      const tarehe = new Date().toISOString().split("T")[0];
 
-    await db.collection("farmers").add({
-      name,
-      phone,
-      location,
-      created: new Date().toISOString().split("T")[0]
+      if (jina && simu && eneo) {
+        await db.collection("farmers").add({ jina, simu, eneo, tarehe });
+        form.reset();
+      }
     });
 
-    form.reset();
-    loadFarmers();
-  });
-
-  async function loadFarmers() {
-    farmerList.innerHTML = "";
-    const snapshot = await db.collection("farmers").orderBy("created", "desc").get();
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const row = `
-        <tr>
-          <td class="border px-4 py-2">${data.name}</td>
-          <td class="border px-4 py-2">${data.phone}</td>
-          <td class="border px-4 py-2">${data.location}</td>
-          <td class="border px-4 py-2">${data.created}</td>
+    async function loadFarmers() {
+      const snapshot = await db.collection("farmers").orderBy("tarehe", "desc").get();
+      farmersTable.innerHTML = "";
+      snapshot.forEach(doc => {
+        const farmer = doc.data();
+        const row = `<tr>
+          <td class="border px-4 py-2">${farmer.jina}</td>
+          <td class="border px-4 py-2">${farmer.simu}</td>
+          <td class="border px-4 py-2">${farmer.eneo}</td>
+          <td class="border px-4 py-2">${farmer.tarehe}</td>
         </tr>`;
-      farmerList.innerHTML += row;
-    });
-  }
+        farmersTable.innerHTML += row;
+      });
+    }
 
-  // Initial load
-  loadFarmers();
-</script>
-
-  </body>
+    window.onload = loadFarmers;
+  </script></body>
 </html>
