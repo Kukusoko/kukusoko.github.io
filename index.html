@@ -1,63 +1,130 @@
 <!DOCTYPE html><html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KukuSoko Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body class="bg-gray-100 text-gray-800">
-    <header class="flex items-center bg-white shadow p-4">
-      <img src="logo.png" alt="KukuSoko Logo" class="h-32 w-32 mr-4" />
-    </header><main class="p-4">
-  <div class="mb-4">
-    <select id="languageToggle" class="p-2 border rounded">
-      <option value="en">English</option>
-      <option value="sw">Kiswahili</option>
-    </select>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-    <div class="bg-white p-4 rounded shadow">
-      <h2 class="text-xl font-bold">👥 Total Farmers</h2>
-      <p id="farmerCount" class="text-2xl mt-2">0</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KukuSoko | Empowering Poultry Trade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #111;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header img {
+      height: 60px;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1603089297485-08b4dcaef042?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2em;
+      max-width: 600px;
+    }
+    .cta-btn {
+      background: #f57c00;
+      color: white;
+      padding: 15px 30px;
+      margin-top: 30px;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cta-btn:hover {
+      background: #e65100;
+    }
+    .features {
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .features h2 {
+      margin-bottom: 40px;
+      font-size: 2.2em;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    .feature-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .feature-box img {
+      width: 50px;
+      margin-bottom: 15px;
+    }
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://kukusoko.github.io/assets/kukusoko-logo.png" alt="KukuSoko Logo" />
+    <nav>
+      <a href="#features">Features</a>
+      <a href="https://kukusoko.github.io">Dashboard</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>  <section class="hero">
+    <h1>Connecting Farmers to Markets</h1>
+    <p>Digital platform to empower poultry aggregation, transparency, and fair trade for local chicken markets.</p>
+    <a href="https://kukusoko.github.io"><button class="cta-btn">Enter Dashboard</button></a>
+  </section>  <section class="features" id="features">
+    <h2>Why KukuSoko?</h2>
+    <div class="features-grid">
+      <div class="feature-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910791.png" alt="Farmer Icon" />
+        <h3>Farmer Focused</h3>
+        <p>Tools designed with local poultry farmers in mind — simple, mobile-friendly and offline-ready.</p>
+      </div>
+      <div class="feature-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/2554/2554833.png" alt="Analytics Icon" />
+        <h3>Real-Time Insights</h3>
+        <p>Track sales, stock levels, and aggregation trends in real-time with your personal dashboard.</p>
+      </div>
+      <div class="feature-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/4285/4285908.png" alt="Language Icon" />
+        <h3>Multi-language Support</h3>
+        <p>Switch between Swahili and English instantly. Localized for real use in Kenya.</p>
+      </div>
     </div>
-  </div>
-
-  <form id="farmerForm" class="bg-white p-4 rounded shadow mb-6">
-    <h2 class="text-lg font-bold mb-4">👤 <span data-en="Add New Farmer" data-sw="Ongeza Mkulima">Add New Farmer</span></h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input type="text" id="name" placeholder="Name / Jina" required class="p-2 border rounded" />
-      <input type="text" id="location" placeholder="Location / Eneo" required class="p-2 border rounded" />
-      <input type="text" id="contact" placeholder="Contact / Mawasiliano" required class="p-2 border rounded" />
-      <input type="number" id="quantity" placeholder="Chicken Quantity / Idadi ya Kuku" required class="p-2 border rounded" />
-    </div>
-    <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-      <span data-en="Add Farmer" data-sw="Ongeza Mkulima">Add Farmer</span>
-    </button>
-  </form>
-
-  <input type="text" id="searchInput" placeholder="🔍 Search / Tafuta" class="mb-4 p-2 w-full border rounded" />
-
-  <div class="overflow-x-auto">
-    <table class="min-w-full bg-white rounded shadow">
-      <thead>
-        <tr>
-          <th class="p-2 text-left">👤 <span data-en="Name" data-sw="Jina">Name</span></th>
-          <th class="p-2 text-left">📍 <span data-en="Location" data-sw="Eneo">Location</span></th>
-          <th class="p-2 text-left">📞 <span data-en="Contact" data-sw="Mawasiliano">Contact</span></th>
-          <th class="p-2 text-left">🐓 <span data-en="Quantity" data-sw="Idadi">Quantity</span></th>
-          <th class="p-2 text-left">🗑️ <span data-en="Delete" data-sw="Futa">Delete</span></th>
-        </tr>
-      </thead>
-      <tbody id="farmerTable"></tbody>
-    </table>
-  </div>
-</main>
-
-<script type="module" src="app.js"></script>
-
-  </body>
-</html>
+  </section>  <footer id="contact">
+    &copy; 2025 KukuSoko. All rights reserved. | Email: kukusokoni@gmail.com
+  </footer>
+</body>
+  </html>
