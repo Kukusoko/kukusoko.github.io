@@ -1,136 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KukuSoko Dashboard</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to KukuSoko</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1614696340114-d76580e19847?auto=format&fit=crop&w=1470&q=80') center center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+    }
+    .hero h1 {
+      font-size: 3rem;
+    }
+    .hero p {
+      font-size: 1.3rem;
+    }
+    .btn-primary {
+      background-color: #ff8800;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #ff6f00;
+    }
+  </style>
 </head>
-<body class="bg-light">
-
-  <div class="container py-4">
-    <div class="text-center mb-4">
-      <img src="kukusoko_logo_optimized.webp" alt="KukuSoko Logo" style="height: 90px;" />
+<body>
+  <section class="hero">
+    <div class="text-center">
+      <img src="kukusoko_logo_optimized.webp" alt="KukuSoko Logo" style="width: 140px; margin-bottom: 20px;">
+      <h1>Welcome to KukuSoko</h1>
+      <p>The #1 platform connecting chicken farmers with buyers</p>
+      <a href="dashboard.html" class="btn btn-primary btn-lg mt-3">Go to Dashboard</a>
     </div>
-
-    <!-- Dashboard Stats -->
-    <div class="row text-center mb-4">
-      <div class="col-md-4">
-        <div class="bg-primary text-white p-3 rounded shadow-sm">
-          <h4 id="totalRecords">0</h4>
-          <p>Total Records</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="bg-success text-white p-3 rounded shadow-sm">
-          <h4 id="liveRecords">0</h4>
-          <p>Live Listings</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="bg-warning text-white p-3 rounded shadow-sm">
-          <h4 id="deletedRecords">0</h4>
-          <p>Deleted</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Search -->
-    <div class="mb-3">
-      <input type="text" id="searchInput" class="form-control" placeholder="Search by name or price" />
-    </div>
-
-    <!-- Table -->
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>#</th>
-            <th>Chicken Name</th>
-            <th>Type</th>
-            <th>Price (Ksh)</th>
-            <th>Farmer</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="dataTableBody">
-          <!-- Rows will be populated here -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
-      authDomain: "kukusoko.firebaseapp.com",
-      projectId: "kukusoko",
-      storageBucket: "kukusoko.firebasestorage.app",
-      messagingSenderId: "854606179651",
-      appId: "1:854606179651:web:9742df9941cc66536e93f6",
-      measurementId: "G-WW0DHDR43N"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    const dataTableBody = document.getElementById("dataTableBody");
-    const searchInput = document.getElementById("searchInput");
-    const totalRecords = document.getElementById("totalRecords");
-    const liveRecords = document.getElementById("liveRecords");
-    const deletedRecords = document.getElementById("deletedRecords");
-
-    function renderTable(data) {
-      dataTableBody.innerHTML = "";
-      let count = 0;
-      data.forEach(doc => {
-        const item = doc.data();
-        count++;
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${count}</td>
-          <td>${item.name}</td>
-          <td>${item.type}</td>
-          <td>${item.price}</td>
-          <td>${item.farmer}</td>
-          <td><button class="btn btn-sm btn-danger" onclick="deleteRecord('${doc.id}')">Delete</button></td>
-        `;
-        dataTableBody.appendChild(row);
-      });
-
-      totalRecords.innerText = count;
-      liveRecords.innerText = count;
-    }
-
-    function deleteRecord(id) {
-      db.collection("chickens").doc(id).delete().then(() => {
-        console.log("Deleted:", id);
-        fetchData();
-      });
-    }
-
-    function fetchData() {
-      db.collection("chickens").get().then(snapshot => {
-        const data = snapshot.docs;
-        renderTable(data);
-      });
-    }
-
-    searchInput.addEventListener("input", () => {
-      const term = searchInput.value.toLowerCase();
-      db.collection("chickens").get().then(snapshot => {
-        const filtered = snapshot.docs.filter(doc => {
-          const item = doc.data();
-          return item.name.toLowerCase().includes(term) || item.price.toString().includes(term);
-        });
-        renderTable(filtered);
-      });
-    });
-
-    fetchData();
-  </script>
-
-</body>
+  </section>  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script></body>
 </html>
