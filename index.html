@@ -3,145 +3,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KukuSoko Dashboard</title>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
-  <body class="bg-gray-50 text-gray-800">
-    <header class="bg-white shadow p-4 flex items-center justify-between">
-      <div class="flex items-center space-x-4">
-        <img src="logo.png" alt="KukuSoko Logo" class="h-20 w-20 object-contain" />
-      </div>
-      <div>
-        <select id="languageToggle" class="border border-gray-300 rounded px-2 py-1">
-          <option value="en">English</option>
-          <option value="sw">Swahili</option>
-        </select>
-      </div>
-    </header><main class="p-6 max-w-5xl mx-auto">
-  <section class="mb-6">
-    <h2 class="text-2xl font-semibold mb-2" id="dashboardTitle">Dashboard Stats</h2>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="bg-white p-4 rounded shadow">
-        <h3 class="text-lg font-medium" id="totalFarmersLabel">Total Farmers</h3>
-        <p class="text-3xl font-bold" id="farmerCount">0</p>
-      </div>
-    </div>
-  </section>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="flex items-center bg-white shadow p-4">
+      <img src="logo.png" alt="KukuSoko Logo" class="h-32 w-32 mr-4" />
+    </header><main class="p-4">
+  <div class="mb-4">
+    <select id="languageToggle" class="p-2 border rounded">
+      <option value="en">English</option>
+      <option value="sw">Kiswahili</option>
+    </select>
+  </div>
 
-  <section class="mb-6">
-    <h2 class="text-2xl font-semibold mb-2" id="registerFarmerTitle">Register New Farmer</h2>
-    <form id="farmerForm" class="bg-white p-4 rounded shadow grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input type="text" id="name" placeholder="Name / Jina" required class="border rounded px-3 py-2" />
-      <input type="text" id="location" placeholder="Location / Mahali" required class="border rounded px-3 py-2" />
-      <input type="text" id="contact" placeholder="Contact / Mawasiliano" required class="border rounded px-3 py-2" />
-      <button type="submit" class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2">Submit</button>
-    </form>
-  </section>
-
-  <section>
-    <h2 class="text-2xl font-semibold mb-2" id="registeredFarmersTitle">Registered Farmers</h2>
-    <input type="text" id="searchInput" placeholder="Search by name..." class="mb-4 w-full px-3 py-2 border rounded" />
-    <div class="overflow-auto">
-      <table class="min-w-full bg-white rounded shadow">
-        <thead class="bg-gray-200">
-          <tr>
-            <th class="text-left px-4 py-2">Name</th>
-            <th class="text-left px-4 py-2">Location</th>
-            <th class="text-left px-4 py-2">Contact</th>
-            <th class="text-left px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="farmerList"></tbody>
-      </table>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold">👥 Total Farmers</h2>
+      <p id="farmerCount" class="text-2xl mt-2">0</p>
     </div>
-  </section>
+  </div>
+
+  <form id="farmerForm" class="bg-white p-4 rounded shadow mb-6">
+    <h2 class="text-lg font-bold mb-4">👤 <span data-en="Add New Farmer" data-sw="Ongeza Mkulima">Add New Farmer</span></h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="text" id="name" placeholder="Name / Jina" required class="p-2 border rounded" />
+      <input type="text" id="location" placeholder="Location / Eneo" required class="p-2 border rounded" />
+      <input type="text" id="contact" placeholder="Contact / Mawasiliano" required class="p-2 border rounded" />
+      <input type="number" id="quantity" placeholder="Chicken Quantity / Idadi ya Kuku" required class="p-2 border rounded" />
+    </div>
+    <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+      <span data-en="Add Farmer" data-sw="Ongeza Mkulima">Add Farmer</span>
+    </button>
+  </form>
+
+  <input type="text" id="searchInput" placeholder="🔍 Search / Tafuta" class="mb-4 p-2 w-full border rounded" />
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white rounded shadow">
+      <thead>
+        <tr>
+          <th class="p-2 text-left">👤 <span data-en="Name" data-sw="Jina">Name</span></th>
+          <th class="p-2 text-left">📍 <span data-en="Location" data-sw="Eneo">Location</span></th>
+          <th class="p-2 text-left">📞 <span data-en="Contact" data-sw="Mawasiliano">Contact</span></th>
+          <th class="p-2 text-left">🐓 <span data-en="Quantity" data-sw="Idadi">Quantity</span></th>
+          <th class="p-2 text-left">🗑️ <span data-en="Delete" data-sw="Futa">Delete</span></th>
+        </tr>
+      </thead>
+      <tbody id="farmerTable"></tbody>
+    </table>
+  </div>
 </main>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
-    authDomain: "kukusoko.firebaseapp.com",
-    projectId: "kukusoko",
-    storageBucket: "kukusoko.firebasestorage.app",
-    messagingSenderId: "854606179651",
-    appId: "1:854606179651:web:9742df9941cc66536e93f6",
-    measurementId: "G-WW0DHDR43N"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  const farmerForm = document.getElementById("farmerForm");
-  const farmerList = document.getElementById("farmerList");
-  const farmerCount = document.getElementById("farmerCount");
-  const searchInput = document.getElementById("searchInput");
-
-  function renderFarmer(doc) {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td class="border px-4 py-2">${doc.data().name}</td>
-      <td class="border px-4 py-2">${doc.data().location}</td>
-      <td class="border px-4 py-2">${doc.data().contact}</td>
-      <td class="border px-4 py-2">
-        <button onclick="deleteFarmer('${doc.id}')" class="text-red-600 hover:underline">Delete</button>
-      </td>
-    `;
-    farmerList.appendChild(tr);
-  }
-
-  function deleteFarmer(id) {
-    db.collection("farmers").doc(id).delete();
-  }
-
-  function filterFarmers(searchTerm) {
-    const rows = farmerList.getElementsByTagName("tr");
-    for (let row of rows) {
-      const name = row.cells[0].textContent.toLowerCase();
-      row.style.display = name.includes(searchTerm.toLowerCase()) ? "" : "none";
-    }
-  }
-
-  farmerForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    db.collection("farmers").add({
-      name: farmerForm.name.value,
-      location: farmerForm.location.value,
-      contact: farmerForm.contact.value,
-    });
-    farmerForm.reset();
-  });
-
-  db.collection("farmers").onSnapshot((snapshot) => {
-    farmerList.innerHTML = "";
-    farmerCount.innerText = snapshot.size;
-    snapshot.forEach((doc) => renderFarmer(doc));
-  });
-
-  searchInput.addEventListener("input", (e) => filterFarmers(e.target.value));
-
-  const languageMap = {
-    en: {
-      dashboardTitle: "Dashboard Stats",
-      totalFarmersLabel: "Total Farmers",
-      registerFarmerTitle: "Register New Farmer",
-      registeredFarmersTitle: "Registered Farmers",
-    },
-    sw: {
-      dashboardTitle: "Takwimu za Dashibodi",
-      totalFarmersLabel: "Wakulima Jumla",
-      registerFarmerTitle: "Sajili Mkulima Mpya",
-      registeredFarmersTitle: "Wakulima Waliosajiliwa",
-    },
-  };
-
-  document.getElementById("languageToggle").addEventListener("change", (e) => {
-    const lang = e.target.value;
-    const labels = languageMap[lang];
-    for (const id in labels) {
-      document.getElementById(id).innerText = labels[id];
-    }
-  });
-</script>
+<script type="module" src="app.js"></script>
 
   </body>
 </html>
