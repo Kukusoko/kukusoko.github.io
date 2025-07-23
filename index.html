@@ -51,15 +51,20 @@
   </div>  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+// Firebase configuration for Kukusoko
+const firebaseConfig = {
+  apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
+  authDomain: "kukusoko.firebaseapp.com",
+  projectId: "kukusoko",
+  storageBucket: "kukusoko.firebasestorage.app",
+  messagingSenderId: "854606179651",
+  appId: "1:854606179651:web:9742df9941cc66536e93f6",
+  measurementId: "G-WW0DHDR43N"
+};
 
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
