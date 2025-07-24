@@ -1,88 +1,145 @@
 <!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KukuSoko</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>KukuSoko | Empowering Poultry Trade</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+      color: #222;
     }header {
-  background: linear-gradient(135deg, #ff8800, #ff5e62);
-  color: white;
+  background: linear-gradient(to bottom right, #ffaa00, #ff5500);
   padding: 2rem;
+  color: white;
   text-align: center;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 3rem;
+  font-size: 2.8rem;
+  margin: 0.5rem 0;
 }
 
-.section {
-  padding: 3rem 1rem;
+header p {
+  font-size: 1.2rem;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #fff8ee;
+  padding: 0.8rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #ff5500;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffaa00;
+}
+
+section {
+  padding: 2.5rem 1rem;
   text-align: center;
-}
-
-.section:hover {
-  background-color: #f9f9f9;
-  transition: background-color 0.3s ease-in-out;
 }
 
 .carousel {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 1rem;
-  padding: 2rem 1rem;
+  scroll-behavior: smooth;
+  gap: 1.2rem;
+  padding: 1rem;
+}
+
+.carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #ffaa00;
+  border-radius: 10px;
 }
 
 .carousel-item {
-  min-width: 300px;
-  flex: 0 0 auto;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  min-width: 280px;
+  background: #fff7e6;
+  border-radius: 12px;
   padding: 1rem;
-  scroll-snap-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.carousel-item:hover {
+  transform: translateY(-5px);
 }
 
 footer {
-  background: #222;
+  background-color: #222;
   color: #fff;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 1.5rem;
+}
+
+.btn {
+  background-color: #ffaa00;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ff8800;
 }
 
   </style>
 </head><body>
   <header>
     <h1>KukuSoko</h1>
-    <p>Your one-stop poultry marketplace</p>
-  </header>  <div class="section">
-    <h2>Why KukuSoko?</h2>
-    <p>Connecting farmers, buyers, and aggregators in one easy-to-use platform.</p>
-  </div>  <div class="section">
-    <h2>Carousel Highlights</h2>
+    <p>Empowering Poultry Trade Across Kenya</p>
+    <button class="btn">Get Started</button>
+  </header>  <nav>
+    <a href="#how">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="#contact">Contact</a>
+  </nav>  <section id="how">
+    <h2>How It Works</h2>
+    <p>Connect with poultry farmers, aggregators, and buyers. KukuSoko streamlines the entire process from farm to market.</p>
+  </section>  <section id="features">
+    <h2>Key Features</h2>
     <div class="carousel">
       <div class="carousel-item">
-        <h3>Reliable Network</h3>
-        <p>Build trust with verified sellers and aggregators.</p>
+        <h3>Real-Time Listings</h3>
+        <p>Find and post live poultry offers instantly.</p>
       </div>
       <div class="carousel-item">
-        <h3>Real-Time Data</h3>
-        <p>Track stock, sales, and trends easily.</p>
+        <h3>Verified Sellers</h3>
+        <p>Trustworthy and vetted poultry providers.</p>
       </div>
       <div class="carousel-item">
-        <h3>Localized Support</h3>
-        <p>Tailored for your region and market needs.</p>
+        <h3>Easy Payment</h3>
+        <p>Secure and seamless transactions on the platform.</p>
+      </div>
+      <div class="carousel-item">
+        <h3>Location-Based Matching</h3>
+        <p>Connect with buyers and sellers near you.</p>
       </div>
     </div>
-  </div>  <div class="section">
-    <h2>Join Us</h2>
-    <p>Be part of the smart poultry revolution today.</p>
-  </div>  <footer>
+  </section>  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:kukusokoni@gmail.com">kukusokoni@gmail.com</a></p>
+    <p>Phone: +254 712 345678</p>
+  </section>  <footer>
     <p>&copy; 2025 KukuSoko. All rights reserved.</p>
   </footer>
 </body></html>
