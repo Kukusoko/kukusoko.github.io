@@ -1,127 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kukusoko</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#3CA15F',
-            lightbg: '#f6fff7',
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kukusoko</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#3CA15F',
+              lightbg: '#f6fff7',
+            },
           },
         },
-      },
-    };
-  </script>
-</head>
-<body class="bg-lightbg text-gray-800">
-
-  <!-- Navbar -->
-  <header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-md shadow-sm transition-all">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <img src="logo.png" alt="Kukusoko Logo" class="h-10 w-auto sm:h-12" />
-      </div>
-      <nav class="hidden md:flex space-x-6 font-medium">
-        <a href="#features" class="hover:text-primary">Features</a>
-        <a href="#about" class="hover:text-primary">About</a>
-        <a href="#contact" class="hover:text-primary">Contact</a>
-      </nav>
-      <button id="menuToggle" class="md:hidden text-3xl text-primary">
-        ☰
-      </button>
-    </div>
-  </header>
-
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-1/2 h-full bg-white/90 backdrop-blur-lg z-50 p-6 hidden flex-col space-y-6 transition-transform transform translate-x-full">
-    <div class="flex justify-end">
-      <button id="closeMenu" class="text-3xl text-primary">×</button>
-    </div>
-    <a href="#features" class="text-lg font-semibold text-gray-700 hover:text-primary">📦 Features</a>
-    <a href="#about" class="text-lg font-semibold text-gray-700 hover:text-primary">ℹ️ About</a>
-    <a href="#contact" class="text-lg font-semibold text-gray-700 hover:text-primary">📞 Contact</a>
-  </div>
-
-  <!-- Hero Section -->
-  <section class="h-screen flex items-center justify-center text-center px-6 bg-gradient-to-br from-green-100 via-white to-green-50">
-    <div class="space-y-6 max-w-2xl">
-      <h1 class="text-3xl sm:text-5xl font-bold text-primary animate-pulse">Kukusoko – Farm • Connect • Thrive</h1>
-      <p class="text-lg text-gray-600 italic">Chicken. Farmers. Market. 🐔</p>
-      <a href="#features" class="inline-block mt-4 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-green-700 transition">Explore Features</a>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section id="features" class="py-16 px-6 max-w-6xl mx-auto">
-    <h2 class="text-2xl sm:text-3xl font-bold text-center text-primary mb-8">Our Key Features</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition">
-        <h3 class="font-semibold text-lg mb-2 text-primary">💼 Aggregator Dashboard</h3>
-        <p class="text-gray-600">Track daily collections, orders, and farmers under one panel.</p>
-      </div>
-      <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition">
-        <h3 class="font-semibold text-lg mb-2 text-primary">📱 WhatsApp Integration</h3>
-        <p class="text-gray-600">Connect easily with your farmers and clients via WhatsApp.</p>
-      </div>
-      <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition">
-        <h3 class="font-semibold text-lg mb-2 text-primary">🌐 Multilingual Support</h3>
-        <p class="text-gray-600">Switch between local languages for better accessibility.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-primary text-white py-8 px-6 mt-12">
-    <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div>
-        <h4 class="font-bold mb-2">Kukusoko</h4>
-        <p>Farmers' bridge to the market.</p>
-      </div>
-      <div>
-        <h4 class="font-bold mb-2">Useful Links</h4>
-        <ul>
-          <li><a href="#features" class="hover:underline">Features</a></li>
-          <li><a href="#about" class="hover:underline">About</a></li>
-          <li><a href="#contact" class="hover:underline">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold mb-2">Location</h4>
-        <p>Lumakanda, Kenya</p>
-      </div>
-      <div>
-        <h4 class="font-bold mb-2">Follow Us</h4>
-        <div class="flex space-x-4">
-          <a href="#" class="hover:text-green-300">🌐</a>
-          <a href="#" class="hover:text-green-300">📘</a>
-          <a href="#" class="hover:text-green-300">📷</a>
+      };
+    </script>
+  </head>
+  <body class="bg-lightbg text-gray-800">
+    <!-- Navbar -->
+    <header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-md shadow-sm transition-all">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <img src="logo.png" alt="Kukusoko Logo" class="h-10 w-auto sm:h-12" />
         </div>
+        <nav class="hidden md:flex space-x-6 font-medium">
+          <a href="#features" class="hover:text-primary">Features</a>
+          <a href="#about" class="hover:text-primary">About</a>
+          <a href="#contact" class="hover:text-primary">Contact</a>
+        </nav>
+        <button id="menuToggle" class="md:hidden text-3xl text-primary">
+          ☰
+        </button>
       </div>
-    </div>
-    <div class="text-center mt-8 text-sm text-green-200">© 2025 Kukusoko. All rights reserved.</div>
-  </footer>
+    </header><!-- Mobile Menu -->
+<div id="mobileMenu" class="fixed top-0 right-0 w-1/2 h-full bg-white/90 backdrop-blur-lg z-50 p-6 hidden flex-col space-y-6 transition-transform transform translate-x-full">
+  <div class="flex justify-end">
+    <button id="closeMenu" class="text-3xl text-primary">×</button>
+  </div>
+  <a href="#features" class="text-lg font-semibold text-gray-700 hover:text-primary">📦 Features</a>
+  <a href="#about" class="text-lg font-semibold text-gray-700 hover:text-primary">ℹ️ About</a>
+  <a href="#contact" class="text-lg font-semibold text-gray-700 hover:text-primary">📞 Contact</a>
+</div>
 
-  <!-- Scripts -->
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
+<!-- Hero Section -->
+<section class="h-screen flex items-center justify-center text-center px-6 bg-gradient-to-br from-green-100 via-white to-green-50">
+  <div class="space-y-6 max-w-2xl">
+    <h1 class="text-3xl sm:text-5xl font-bold text-primary animate-pulse">Kukusoko – Farm • Connect • Thrive</h1>
+    <p class="text-lg text-gray-600 italic">Chicken. Farmers. Market. 🐔</p>
+    <a href="#features" class="inline-block mt-4 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-green-700 transition">Explore Features</a>
+  </div>
+</section>
 
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.remove('translate-x-full');
-      mobileMenu.classList.add('flex');
-    });
+<!-- Script -->
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const closeMenu = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
 
-    closeMenu.addEventListener('click', () => {
-      mobileMenu.classList.add('translate-x-full');
-      setTimeout(() => mobileMenu.classList.remove('flex'), 300);
-    });
-  </script>
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.remove('translate-x-full');
+    mobileMenu.classList.add('flex');
+  });
 
-</body>
+  closeMenu.addEventListener('click', () => {
+    mobileMenu.classList.add('translate-x-full');
+    setTimeout(() => mobileMenu.classList.remove('flex'), 300);
+  });
+</script>
+
+  </body>
 </html>
