@@ -1,165 +1,184 @@
 <!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KukuSoko | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KukuSoko</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }body {
-  background: linear-gradient(135deg, #f3f4f6, #ffffff);
+  background: linear-gradient(to bottom right, #fffdf9, #f0f0f0);
   color: #333;
   line-height: 1.6;
 }
 
-nav {
+header {
+  background: #fff;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
 }
 
-nav .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+header img {
+  height: 50px;
 }
 
-nav img {
-  height: 40px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-
-nav ul li a {
+nav a {
+  margin-left: 20px;
   text-decoration: none;
-  color: #333;
+  color: #444;
   font-weight: 500;
-  transition: color 0.3s;
 }
 
-nav ul li a:hover {
+nav a:hover {
   color: #e67e22;
 }
 
-header {
-  padding: 6rem 2rem 4rem;
-  text-align: center;
-  background: linear-gradient(to right, #ffefba, #ffffff);
-}
-
-header h1 {
-  font-size: 2.8rem;
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-header p {
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 section {
-  padding: 4rem 2rem;
+  padding: 100px 20px 60px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.hero {
   text-align: center;
+  margin-top: 80px;
 }
 
-section h2 {
-  font-size: 2rem;
+.hero h1 {
+  font-size: 2.5rem;
   color: #2c3e50;
-  margin-bottom: 1.5rem;
 }
 
-section p {
-  max-width: 700px;
-  margin: 0 auto 2rem;
+.hero p {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  color: #555;
 }
 
-.features {
+.carousel {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
 }
 
-.feature {
-  flex: 1 1 250px;
+.carousel div {
+  min-width: 200px;
+  padding: 20px;
   background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
 
-.feature:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.carousel div:hover {
+  transform: scale(1.05);
 }
 
 footer {
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  margin: 10px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+  color: #f39c12;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #bdc3c7;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
   text-align: center;
-  padding: 2rem;
-  font-size: 0.9rem;
-  background-color: #f4f4f4;
-  color: #888;
+  margin-top: 30px;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+  color: #aaa;
 }
 
   </style>
 </head><body>
-  <nav>
-    <div class="logo">
-      <img src="logo.png" alt="KukuSoko Logo">
-    </div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>  <header>
+  <header>
+    <img src="logo.png" alt="KukuSoko Logo" />
+    <nav>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>  <section class="hero">
     <h1>Welcome to KukuSoko</h1>
-    <p>Your smart solution to poultry aggregation and farm-based marketplace in Kenya. Join us and grow together!</p>
-  </header>  <section id="about">
-    <h2>About KukuSoko</h2>
-    <p>KukuSoko is a platform that empowers poultry farmers by providing tools for aggregation, market access, and data-driven management — all through a clean digital experience.</p>
+    <p>The ultimate poultry aggregation platform designed for you.</p>
+  </section>  <section id="about">
+    <h2>About Us</h2>
+    <p>KukuSoko is a smart digital solution connecting poultry farmers and aggregators across Kenya. We make it easier for farmers to market and sell their produce in a smart, transparent, and profitable way.</p>
   </section>  <section id="features">
     <h2>Key Features</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>Aggregation Dashboard</h3>
-        <p>Monitor and manage poultry supplies from multiple farmers in real-time.</p>
-      </div>
-      <div class="feature">
-        <h3>Sales & Market Insights</h3>
-        <p>Real-time data to help farmers and aggregators make better sales decisions.</p>
-      </div>
-      <div class="feature">
-        <h3>Inventory Tracking</h3>
-        <p>Keep accurate records of chickens, feeds, and medical treatments.</p>
-      </div>
-      <div class="feature">
-        <h3>Language Toggle</h3>
-        <p>Switch easily between Swahili and English for wider accessibility.</p>
-      </div>
+    <div class="carousel">
+      <div><strong>Smart Dashboard</strong><br />Track farm output easily.</div>
+      <div><strong>Live Market Prices</strong><br />Stay updated with trends.</div>
+      <div><strong>Farmer Profiles</strong><br />Build trust and traceability.</div>
+      <div><strong>Easy Aggregation</strong><br />Streamlined logistics.</div>
     </div>
   </section>  <section id="contact">
     <h2>Contact Us</h2>
-    <p>Email: support@kukusoko.co.ke | Phone: +254 700 000000</p>
+    <p>Email: info@kukusoko.com<br />Phone: +254 712 345 678</p>
   </section>  <footer>
-    &copy; 2025 KukuSoko. All rights reserved.
+    <div class="footer-section">
+      <h3>Social Media</h3>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Useful Links</h3>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Our Location</h3>
+      <p>Lumakanda, Kenya<br />West Pokot Road<br />Nairobi Office: View Park Towers</p>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 KukuSoko. All rights reserved.
+    </div>
   </footer>
 </body></html>
