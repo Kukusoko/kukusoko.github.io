@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KukuSoko - Empowering Poultry Farmers</title>
   <link rel="icon" type="image/png" href="assets/kukusoko-logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
-
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>  <style>
     * {
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
@@ -154,61 +151,50 @@
         height: 70px;
       }
     }
-  </style>
-</head>
-<body>
-
-  <header>
+  </style></head>
+<body>  <header>
     <div class="logo">
       <img src="assets/kukusoko-logo.png" alt="KukuSoko Logo" />
-    </div>
+    </div><div class="menu-toggle" onclick="toggleMenu()">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+<nav>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <div class="mobile-menu" id="mobileMenu">
+  </header>  <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-  </div>
-
-  <main class="container">
+  </div>  <main class="container">
     <h1>Welcome to KukuSoko</h1>
-    <p style="text-align: center;">The #1 platform empowering poultry farmers and aggregators across Kenya.</p>
+    <p style="text-align: center;">The #1 platform empowering poultry farmers and aggregators across Kenya.</p><section id="features">
+  <h2>Features</h2>
+  <ul>
+    <li>Inventory management & live market pricing</li>
+    <li>Multilingual toggle (Swahili + English)</li>
+    <li>Farmer profiles and order tracking</li>
+    <li>Push notifications + WhatsApp integration</li>
+  </ul>
+</section>
 
-    <section id="features">
-      <h2>Features</h2>
-      <ul>
-        <li>Inventory management & live market pricing</li>
-        <li>Multilingual toggle (Swahili + English)</li>
-        <li>Farmer profiles and order tracking</li>
-        <li>Push notifications + WhatsApp integration</li>
-      </ul>
-    </section>
+<section id="about">
+  <h2>About Us</h2>
+  <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
+</section>
 
-    <section id="about">
-      <h2>About Us</h2>
-      <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
-    </section>
-  </main>
-
-  <footer id="contact">
+  </main>  <footer id="contact">
     <div>
       <h4>Useful Links</h4>
       <a href="#about">About</a>
@@ -227,14 +213,10 @@
     <div style="width: 100%; text-align: center; margin-top: 1rem;">
       <small>&copy; 2025 KukuSoko. All rights reserved.</small>
     </div>
-  </footer>
-
-  <script>
+  </footer>  <script>
     function toggleMenu() {
       const menu = document.getElementById('mobileMenu');
       menu.classList.toggle('active');
     }
-  </script>
-
-</body>
-</html>
+  </script></body>
+        </html>
