@@ -49,6 +49,49 @@
       display: none;
       margin-left: auto;
     }
+    nav ul li {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+nav ul.show li {
+  opacity: 1;
+  transform: translateY(0);
+}
+    nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  transition: max-height 0.4s ease;
+  overflow: hidden;
+  max-height: 0;
+}
+
+nav ul.show {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-height: 500px;
+}
+
+@media (min-width: 769px) {
+  nav ul {
+    max-height: none;
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+    }
 
     #nav-menu nav ul {
       list-style: none;
@@ -211,6 +254,22 @@
       <small>&copy; 2025 KukuSoko. All rights reserved.</small>
     </div>
   </footer>
+  <script>
+  const navbar = document.getElementById('navbar');
+  const navLinks = document.getElementById('nav-links');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  function toggleMenu() {
+    navLinks.classList.toggle('show');
+  }
+  </script>
 
   <script>
     const toggle = document.getElementById('menu-toggle');
