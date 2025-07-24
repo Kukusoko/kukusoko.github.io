@@ -1,270 +1,240 @@
 <!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KukuSoko - Empowering Poultry Farmers</title>
-  <link rel="icon" type="image/png" href="assets/kukusoko-logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }body {
-  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
-  color: #333;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: transparent;
-  z-index: 999;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-header.scrolled {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #ddd;
-}
-
-.logo img {
-  height: 80px;
-}
-
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  margin-left: auto;
-}
-
-.menu-toggle svg {
-  width: 28px;
-  height: 28px;
-  color: #333;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #00796b;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KukuSoko — Farm • Connect • Thrive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }body {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #222;
+    line-height: 1.6;
   }
 
-  nav ul.nav-links {
-    flex-direction: column;
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #ff6600;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .mobile-nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 50%;
     height: 100vh;
-    background: white;
-    padding: 4rem 2rem;
-    transition: right 0.4s ease;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    background: #fff;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: right 0.3s ease;
+    box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+    z-index: 999;
   }
 
-  nav ul.nav-links.active {
+  .mobile-nav.active {
     right: 0;
   }
 
-  nav ul.nav-links li {
-    opacity: 0;
-    transform: translateX(20px);
-    animation: slideIn 0.5s forwards;
-    animation-delay: var(--delay);
-    margin-bottom: 1.5rem;
+  .close-btn {
+    align-self: flex-end;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
 
-  nav ul.nav-links.active li:nth-child(1) { --delay: 0.1s; }
-  nav ul.nav-links.active li:nth-child(2) { --delay: 0.2s; }
-  nav ul.nav-links.active li:nth-child(3) { --delay: 0.3s; }
-  nav ul.nav-links.active li:nth-child(4) { --delay: 0.4s; }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10rem 2rem 6rem;
+    min-height: 100vh;
+  }
 
-  @keyframes slideIn {
-    to {
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #ff6600, #fcb900);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: fadeInUp 1s ease;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .cta-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #ff6600;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .cta-btn:hover {
+    background-color: #e65c00;
+  }
+
+  footer {
+    background: #222;
+    color: #fff;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  footer .col {
+    flex: 1 1 200px;
+  }
+
+  footer a {
+    display: block;
+    color: #ddd;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: #ff6600;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
-}
 
-main {
-  padding-top: 100px;
-}
-
-section#landing {
-  height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  background: linear-gradient(to bottom right, #c8e6c9, #ffffff);
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 1rem 2rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #00796b;
-  animation: fadeInUp 1s ease-in-out;
-}
-
-p {
-  font-size: 1.2rem;
-  color: #333;
-  animation: fadeInUp 1.5s ease-in-out;
-}
-
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-h2 {
-  font-size: 1.75rem;
-  margin-top: 2rem;
-}
-
-footer {
-  background: #004d40;
-  color: white;
-  padding: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-footer div {
-  flex: 1 1 200px;
-  margin-bottom: 1rem;
-}
-
-footer h4 {
-  margin-bottom: 1rem;
-}
-
-footer a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-footer small {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-  </style>
-</head>
-<body>
-  <header id="navbar">
-    <div class="logo">
-      <img src="logo.png" alt="KukuSoko Logo" />
-    </div>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <i data-lucide="menu"></i>
-    </div>
-    <nav>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li class="close-icon" onclick="toggleMenu()">
-          <i data-lucide="x"></i>
-        </li>
-      </ul>
-    </nav>
-  </header>  <main>
-    <section id="landing">
-      <div class="container">
-        <h1>Welcome to KukuSoko</h1>
-        <p>The #1 platform empowering poultry farmers and aggregators across Kenya.</p>
-      </div>
-    </section><section class="container" id="features">
-  <h2>Features</h2>
-  <ul>
-    <li>Inventory management & live market pricing</li>
-    <li>Multilingual toggle (Swahili + English)</li>
-    <li>Farmer profiles and order tracking</li>
-    <li>Push notifications + WhatsApp integration</li>
-  </ul>
-</section>
-
-<section class="container" id="about">
-  <h2>About Us</h2>
-  <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
-</section>
-
-  </main>  <footer id="contact">
-    <div>
-      <h4>Useful Links</h4>
-      <a href="#about">About</a>
-      <a href="#features">Features</a>
-    </div>
-    <div>
-      <h4>Location</h4>
-      <p>Lumakanda, Kakamega County</p>
-    </div>
-    <div>
-      <h4>Connect With Us</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-      <a href="#">Instagram</a>
-    </div>
-    <small>&copy; 2025 KukuSoko. All rights reserved.</small>
-  </footer>  <script>
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('active');
+  @media (max-width: 768px) {
+    nav {
+      display: none;
     }
+    .menu-toggle {
+      display: block;
+    }
+    .logo {
+      height: 50px;
+    }
+    .hero h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
 
-    window.addEventListener('scroll', function () {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 20) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
+  </head>
+  <body>
+    <header>
+      <img src="logo.png" alt="kukusoko logo" class="logo" />
+      <nav>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <i class="fas fa-bars menu-toggle"></i>
+      <div class="mobile-nav" id="mobileNav">
+        <i class="fas fa-times close-btn" id="closeNav"></i>
+        <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+        <a href="#features"><i class="fas fa-cogs"></i> Features</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </header><section class="hero">
+  <h1>KukuSoko — Farm • Connect • Thrive</h1>
+  <p>Your poultry marketplace — simplified, powerful, everywhere.</p>
+  <button class="cta-btn">Track Prices Now</button>
+</section>
 
-    lucide.createIcons();
-  </script></body>
-  </html>
+<footer>
+  <div class="col">
+    <h3>Social</h3>
+    <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+    <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+  <div class="col">
+    <h3>Location</h3>
+    <p>Lumakanda, Kenya</p>
+  </div>
+  <div class="col">
+    <h3>Useful Links</h3>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="col">
+    <p>&copy; 2025 KukuSoko. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const closeNav = document.getElementById('closeNav');
+
+  toggle.addEventListener('click', () => {
+    mobileNav.classList.add('active');
+  });
+
+  closeNav.addEventListener('click', () => {
+    mobileNav.classList.remove('active');
+  });
+</script>
+
+  </body>
+</html>
