@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,167 +12,198 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
-    }
+    }body {
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+  color: #333;
+}
 
-    body {
-      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
-      color: #333;
-    }
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+}
 
-    header {
-      position: sticky;
-      top: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
-      z-index: 999;
-    }
+.logo img {
+  height: 60px;
+}
 
-    .logo img {
-      height: 60px;
-    }
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
 
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-    }
+nav ul li a {
+  text-decoration: none;
+  color: #004d40;
+  font-weight: 500;
+  transition: color 0.3s;
+}
 
-    nav ul li a {
-      text-decoration: none;
-      color: #004d40;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+nav ul li a:hover {
+  color: #00796b;
+}
 
-    nav ul li a:hover {
-      color: #00796b;
-    }
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #004d40;
+}
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #004d40;
-    }
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom right, #e0f7fa, #d0f0e0);
+}
 
-    .hero {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(to bottom right, #e0f7fa, #d0f0e0);
-    }
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #004d40;
+  margin-bottom: 1rem;
+  animation: fadeInDown 1s ease;
+}
 
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #004d40;
-      margin-bottom: 1rem;
-      animation: fadeInDown 1s ease;
-    }
+.hero p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
 
-    .hero p {
-      font-size: 1.2rem;
-      color: #333;
-      margin-bottom: 2rem;
-    }
+.hero .cta {
+  background-color: #00796b;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
 
-    .hero .cta {
-      background-color: #00796b;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      font-weight: 600;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
+.hero .cta:hover {
+  background-color: #004d40;
+}
 
-    .hero .cta:hover {
-      background-color: #004d40;
-    }
+section.features {
+  padding: 4rem 2rem;
+  background: #f1fdfc;
+}
 
-    footer {
-      background-color: #004d40;
-      color: #fff;
-      padding: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+.features h2 {
+  text-align: center;
+  color: #004d40;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
 
-    footer div {
-      flex: 1 1 200px;
-      margin: 1rem 0;
-    }
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
 
-    footer h4 {
-      margin-bottom: 1rem;
-    }
+.feature {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
 
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
+.feature:hover {
+  transform: translateY(-5px);
+}
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+.feature h3 {
+  color: #00796b;
+  margin-bottom: 1rem;
+}
 
-    /* Mobile */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: -60%;
-        width: 60%;
-        height: 100vh;
-        background: #e0f7fa;
-        padding-top: 5rem;
-        gap: 2rem;
-        transition: right 0.3s ease;
-        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-      }
+footer {
+  background-color: #004d40;
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-      nav ul.active {
-        right: 0;
-      }
+footer div {
+  flex: 1 1 200px;
+  margin: 1rem 0;
+}
 
-      .menu-toggle {
-        display: block;
-      }
+footer h4 {
+  margin-bottom: 1rem;
+}
 
-      .nav-close {
-        position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
-        font-size: 1.8rem;
-        cursor: pointer;
-      }
+footer a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+}
 
-      .logo img {
-        height: 70px;
-      }
+footer a:hover {
+  text-decoration: underline;
+}
 
-      header {
-        flex-direction: row;
-      }
-    }
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -60%;
+    width: 60%;
+    height: 100vh;
+    background: #e0f7fa;
+    padding-top: 5rem;
+    gap: 2rem;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  }
 
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+  nav ul.active {
+    right: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .logo img {
+    height: 70px;
+  }
+
+  header {
+    flex-direction: row;
+  }
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
   </style>
 </head>
-<body>
-
-  <header>
+<body>  <header>
     <div class="logo">
       <img src="logo.png" alt="KukuSoko Logo" />
     </div>
@@ -189,15 +219,31 @@
         <span class="nav-close" onclick="toggleMenu()"><i class="fas fa-times"></i></span>
       </ul>
     </nav>
-  </header>
-
-  <section class="hero">
+  </header>  <section class="hero">
     <h1>KukuSoko — Farm • Connect • Thrive</h1>
     <p><strong>Empowering Poultry Futures.</strong></p>
     <a href="#features" class="cta">Track Prices Now</a>
-  </section>
-
-  <footer id="contact">
+  </section>  <section class="features" id="features">
+    <h2>Platform Highlights</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3><i class="fas fa-chart-line"></i> Live Market Prices</h3>
+        <p>Access real-time chicken market rates and trends in your area.</p>
+      </div>
+      <div class="feature">
+        <h3><i class="fas fa-store"></i> Smart Inventory</h3>
+        <p>Track feed, chicks, and sales with one click inventory tools.</p>
+      </div>
+      <div class="feature">
+        <h3><i class="fas fa-users"></i> Farmer Network</h3>
+        <p>Connect with nearby farmers, aggregators & buyers in one app.</p>
+      </div>
+      <div class="feature">
+        <h3><i class="fas fa-language"></i> Multilingual Support</h3>
+        <p>Use KukuSoko in Kiswahili, English, or your local dialect.</p>
+      </div>
+    </div>
+  </section>  <footer id="contact">
     <div>
       <h4>Useful Links</h4>
       <a href="#about">About</a>
@@ -216,12 +262,9 @@
     <div style="width: 100%; text-align: center; margin-top: 1rem;">
       <small>&copy; 2025 KukuSoko. All rights reserved.</small>
     </div>
-  </footer>
-
-  <script>
+  </footer>  <script>
     function toggleMenu() {
       document.getElementById('nav-links').classList.toggle('active');
     }
-  </script>
-</body>
+  </script></body>
   </html>
