@@ -1,197 +1,206 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KukuSoko - Empowering Poultry Farmers</title>
   <link rel="icon" type="image/png" href="assets/kukusoko-logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+    }body {
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+  color: #333;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  z-index: 999;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+header.scrolled {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ddd;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.menu-toggle svg {
+  width: 28px;
+  height: 28px;
+  color: #333;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00796b;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav ul.nav-links {
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 50%;
+    height: 100vh;
+    background: white;
+    padding: 4rem 2rem;
+    transition: right 0.4s ease;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  nav ul.nav-links.active {
+    right: 0;
+  }
+
+  nav ul.nav-links li {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.5s forwards;
+    animation-delay: var(--delay);
+    margin-bottom: 1.5rem;
+  }
+
+  nav ul.nav-links.active li:nth-child(1) { --delay: 0.1s; }
+  nav ul.nav-links.active li:nth-child(2) { --delay: 0.2s; }
+  nav ul.nav-links.active li:nth-child(3) { --delay: 0.3s; }
+  nav ul.nav-links.active li:nth-child(4) { --delay: 0.4s; }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
+  }
+}
 
-    body {
-      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
-      color: #333;
-    }
+main {
+  padding-top: 100px;
+}
 
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      z-index: 999;
-      border-bottom: 1px solid #ddd;
-    }
+section#landing {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(to bottom right, #c8e6c9, #ffffff);
+}
 
-    .logo img {
-      height: 60px;
-      max-height: 70px;
-    }
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem 2rem;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #00796b;
+  animation: fadeInUp 1s ease-in-out;
+}
 
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
+p {
+  font-size: 1.2rem;
+  color: #333;
+  animation: fadeInUp 1.5s ease-in-out;
+}
 
-    nav ul li a:hover {
-      color: #00796b;
-    }
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
+h2 {
+  font-size: 1.75rem;
+  margin-top: 2rem;
+}
 
-    .menu-toggle span {
-      height: 3px;
-      width: 25px;
-      background: #333;
-      margin: 4px 0;
-      transition: 0.4s;
-    }
+footer {
+  background: #004d40;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-    }
+footer div {
+  flex: 1 1 200px;
+  margin-bottom: 1rem;
+}
 
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
+footer h4 {
+  margin-bottom: 1rem;
+}
 
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 1rem 2rem;
-        border-top: 1px solid #eee;
-      }
+footer a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+}
 
-      .nav-links.active {
-        display: flex;
-        animation: slideDown 0.3s ease-in-out;
-      }
+footer a:hover {
+  text-decoration: underline;
+}
 
-      nav ul {
-        flex-direction: column;
-        width: 100%;
-      }
+footer small {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
 
-      nav ul li {
-        padding: 0.5rem 0;
-      }
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    main {
-      padding-top: 120px;
-    }
-
-    section#landing {
-      height: 50vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 1rem 2rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: 1.75rem;
-      margin-top: 2rem;
-    }
-
-    footer {
-      background: #004d40;
-      color: white;
-      padding: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    footer div {
-      flex: 1 1 200px;
-      margin-bottom: 1rem;
-    }
-
-    footer h4 {
-      margin-bottom: 1rem;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    footer small {
-      display: block;
-      width: 100%;
-      text-align: center;
-      margin-top: 1rem;
-    }
   </style>
 </head>
 <body>
-  <header>
+  <header id="navbar">
     <div class="logo">
       <img src="logo.png" alt="KukuSoko Logo" />
     </div>
     <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <i data-lucide="menu"></i>
     </div>
     <nav>
       <ul class="nav-links" id="navLinks">
@@ -199,35 +208,33 @@
         <li><a href="#features">Features</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li class="close-icon" onclick="toggleMenu()">
+          <i data-lucide="x"></i>
+        </li>
       </ul>
     </nav>
-  </header>
-
-  <main>
+  </header>  <main>
     <section id="landing">
       <div class="container">
         <h1>Welcome to KukuSoko</h1>
         <p>The #1 platform empowering poultry farmers and aggregators across Kenya.</p>
       </div>
-    </section>
+    </section><section class="container" id="features">
+  <h2>Features</h2>
+  <ul>
+    <li>Inventory management & live market pricing</li>
+    <li>Multilingual toggle (Swahili + English)</li>
+    <li>Farmer profiles and order tracking</li>
+    <li>Push notifications + WhatsApp integration</li>
+  </ul>
+</section>
 
-    <section class="container" id="features">
-      <h2>Features</h2>
-      <ul>
-        <li>Inventory management & live market pricing</li>
-        <li>Multilingual toggle (Swahili + English)</li>
-        <li>Farmer profiles and order tracking</li>
-        <li>Push notifications + WhatsApp integration</li>
-      </ul>
-    </section>
+<section class="container" id="about">
+  <h2>About Us</h2>
+  <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
+</section>
 
-    <section class="container" id="about">
-      <h2>About Us</h2>
-      <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
-    </section>
-  </main>
-
-  <footer id="contact">
+  </main>  <footer id="contact">
     <div>
       <h4>Useful Links</h4>
       <a href="#about">About</a>
@@ -244,12 +251,20 @@
       <a href="#">Instagram</a>
     </div>
     <small>&copy; 2025 KukuSoko. All rights reserved.</small>
-  </footer>
-
-  <script>
+  </footer>  <script>
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('active');
     }
-  </script>
-</body>
+
+    window.addEventListener('scroll', function () {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    lucide.createIcons();
+  </script></body>
   </html>
