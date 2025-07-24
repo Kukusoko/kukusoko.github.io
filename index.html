@@ -1,151 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KukuSoko - Farm • Connect • Thrive</title>
-  <link rel="icon" href="assets/kukusoko-logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/a2e0e6e6e0.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KukuSoko - Empowering Poultry Farmers</title>
+  <link rel="icon" type="image/png" href="assets/kukusoko-logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const closeMenu = document.getElementById('close-menu');
+      const mobileMenu = document.getElementById('mobile-menu');menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+  });
+
+  closeMenu.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+  });
+});
+
+  </script>
   <style>
     * {
       box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
     }
-
     body {
-      background: linear-gradient(to bottom right, #e0f7fa, #f1fff5);
+      background: linear-gradient(to bottom right, #e0f7fa, #f1fff6);
       color: #333;
+      line-height: 1.6;
     }
-
     header {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.85);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid #eee;
     }
-
     .logo img {
       height: 60px;
     }
-
-    nav {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-links {
+    nav ul {
+      list-style: none;
       display: flex;
       gap: 1.5rem;
     }
-
-    .nav-links a {
+    nav ul li a {
       text-decoration: none;
-      color: #004d40;
-      font-weight: 600;
-      transition: color 0.3s ease;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
     }
-
-    .nav-links a:hover {
+    nav ul li a:hover {
       color: #00796b;
     }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      color: #004d40;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 60%;
-        background: #004d40;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 3rem 2rem;
-        transition: right 0.3s ease-in-out;
-      }
-
-      .nav-links a {
-        color: #fff;
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-      }
-
-      .nav-links.active {
-        right: 0;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .close-btn {
-        align-self: flex-end;
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-        color: #fff;
-        cursor: pointer;
-      }
-    }
-
     .hero {
-      padding: 6rem 2rem 4rem;
       text-align: center;
-      background: linear-gradient(to bottom right, #e0f7fa, #ccffd8);
+      padding: 4rem 2rem;
+      background: linear-gradient(to bottom right, #ccf3e0, #f0fdf8);
     }
-
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
+      margin-bottom: 1rem;
+      animation: slideIn 1s ease-in-out;
       color: #004d40;
-      animation: slideIn 1s ease;
     }
-
     .hero p {
-      font-size: 1.1rem;
-      margin-top: 1rem;
-      color: #00695c;
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 2rem;
     }
-
-    .hero .cta {
-      margin-top: 2rem;
-      padding: 0.8rem 1.5rem;
-      background: #00796b;
+    .cta-btn {
+      padding: 0.75rem 1.5rem;
+      background-color: #00796b;
       color: #fff;
       border: none;
       border-radius: 8px;
-      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background-color 0.3s;
     }
-
-    .hero .cta:hover {
-      background: #004d40;
+    .cta-btn:hover {
+      background-color: #004d40;
     }
-
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+    }
+    #mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 50%;
+      background-color: #ffffff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    #mobile-menu.open {
+      display: flex;
+      transform: translateX(0);
+    }
+    #mobile-menu a {
+      margin-bottom: 1.2rem;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #004d40;
+    }
+    #close-menu {
+      align-self: flex-end;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 2rem;
+    }
     @keyframes slideIn {
       from {
-        transform: translateY(-20px);
         opacity: 0;
+        transform: translateY(20px);
       }
       to {
-        transform: translateY(0);
         opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .logo img {
+        height: 70px;
       }
     }
   </style>
@@ -155,33 +157,25 @@
     <div class="logo">
       <img src="logo.png" alt="KukuSoko Logo" />
     </div>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
-    </div>
     <nav>
-      <div class="nav-links" id="navLinks">
-        <div class="close-btn" onclick="toggleMenu()">
-          <i class="fas fa-times"></i>
-        </div>
-        <a href="#">Home</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
-  </header>
-
-  <section class="hero">
-    <h1>KukuSoko – Farm•Connect•Thrive</h1>
-    <p>Empowering local poultry farmers for a smarter marketplace.</p>
-    <button class="cta">Track Inventory Now</button>
-  </section>
-
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('navLinks');
-      nav.classList.toggle('active');
-    }
-  </script>
+    <button id="menu-toggle" class="menu-toggle">☰</button>
+  </header>  <div id="mobile-menu">
+    <button id="close-menu">✖</button>
+    <a href="#">Home</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>  <main class="hero">
+    <h1>KukuSoko - Farm•Connect•Thrive</h1>
+    <p><strong>Buy. Sell. Thrive!</strong></p>
+    <button class="cta-btn">Track Chicken Prices</button>
+  </main>
 </body>
 </html>
