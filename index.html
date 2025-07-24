@@ -1,10 +1,12 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KukuSoko - Empowering Poultry Farmers</title>
   <link rel="icon" type="image/png" href="assets/kukusoko-logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
     * {
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
@@ -23,17 +25,27 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      position: sticky;
+      position: fixed;
       top: 0;
-      background-color: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(10px);
+      width: 100%;
       z-index: 100;
-      border-bottom: 1px solid #eee;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+      background: transparent;
+    }
+
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #ddd;
     }
 
     .logo img {
-      height: 60px;
+      height: 50px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
     }
 
     nav ul {
@@ -57,29 +69,44 @@
       display: none;
       flex-direction: column;
       cursor: pointer;
+      gap: 4px;
     }
 
-    .menu-toggle div {
-      width: 25px;
+    .menu-toggle span {
       height: 3px;
-      background-color: #333;
-      margin: 4px 0;
-      transition: 0.4s;
+      width: 25px;
+      background: #333;
+      transition: 0.3s ease;
     }
 
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
 
-    .mobile-menu.active {
-      display: flex;
+      nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        width: 200px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: none;
+        padding: 1rem;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .logo img {
+        height: 60px;
+      }
     }
 
     .container {
-      padding: 2rem;
+      padding: 6rem 2rem 2rem;
       max-width: 900px;
       margin: auto;
     }
@@ -130,71 +157,56 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
-
-      nav ul {
-        display: none;
-      }
-
-      .mobile-menu ul {
-        list-style: none;
-        padding: 1rem;
-        gap: 1rem;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .logo img {
-        height: 70px;
-      }
+    footer small {
+      width: 100%;
+      text-align: center;
+      display: block;
+      margin-top: 2rem;
     }
-  </style></head>
-<body>  <header>
+  </style>
+</head>
+<body>
+
+  <header id="navbar">
     <div class="logo">
       <img src="assets/kukusoko-logo.png" alt="KukuSoko Logo" />
-    </div><div class="menu-toggle" onclick="toggleMenu()">
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<nav>
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-  </header>  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>  <main class="container">
+  <main class="container">
     <h1>Welcome to KukuSoko</h1>
-    <p style="text-align: center;">The #1 platform empowering poultry farmers and aggregators across Kenya.</p><section id="features">
-  <h2>Features</h2>
-  <ul>
-    <li>Inventory management & live market pricing</li>
-    <li>Multilingual toggle (Swahili + English)</li>
-    <li>Farmer profiles and order tracking</li>
-    <li>Push notifications + WhatsApp integration</li>
-  </ul>
-</section>
+    <p style="text-align: center;">The #1 platform empowering poultry farmers and aggregators across Kenya.</p>
 
-<section id="about">
-  <h2>About Us</h2>
-  <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
-</section>
+    <section id="features">
+      <h2>Features</h2>
+      <ul>
+        <li>Inventory management & live market pricing</li>
+        <li>Multilingual toggle (Swahili + English)</li>
+        <li>Farmer profiles and order tracking</li>
+        <li>Push notifications + WhatsApp integration</li>
+      </ul>
+    </section>
 
-  </main>  <footer id="contact">
+    <section id="about">
+      <h2>About Us</h2>
+      <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
+    </section>
+  </main>
+
+  <footer id="contact">
     <div>
       <h4>Useful Links</h4>
       <a href="#about">About</a>
@@ -210,13 +222,26 @@
       <a href="#">Twitter</a>
       <a href="#">Instagram</a>
     </div>
-    <div style="width: 100%; text-align: center; margin-top: 1rem;">
-      <small>&copy; 2025 KukuSoko. All rights reserved.</small>
-    </div>
-  </footer>  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('active');
-    }
-  </script></body>
-        </html>
+    <small>&copy; 2025 KukuSoko. All rights reserved.</small>
+  </footer>
+
+  <script>
+    // Toggle mobile menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Navbar scroll blur
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
