@@ -2,92 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KukuSoko - Empowering Poultry Farmers</title>
   <link rel="icon" type="image/png" href="assets/kukusoko-logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      background: linear-gradient(to bottom right, #e0f7fa, #f0fff0);
+      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
       color: #333;
-      line-height: 1.6;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
       z-index: 999;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ddd;
     }
 
     .logo img {
       height: 60px;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      margin-left: auto;
     }
 
-    nav ul li a {
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
       text-decoration: none;
       color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
 
-    nav ul li a:hover {
+    .nav-links a:hover {
       color: #00796b;
     }
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1001;
-    }
+    /* Mobile Menu */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
 
-    .mobile-menu {
-      display: none;
+      nav ul.nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 50%;
+        height: 100vh;
+        background: white;
+        padding: 4rem 2rem;
+        transition: right 0.4s ease;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav ul.nav-links.active {
+        right: 0;
+      }
+
+      nav ul.nav-links li {
+        opacity: 0;
+        transform: translateX(20px);
+        animation: slideIn 0.5s forwards;
+        animation-delay: var(--delay);
+        margin-bottom: 1.5rem;
+      }
+
+      nav ul.nav-links.active li:nth-child(1) { --delay: 0.1s; }
+      nav ul.nav-links.active li:nth-child(2) { --delay: 0.2s; }
+      nav ul.nav-links.active li:nth-child(3) { --delay: 0.3s; }
+      nav ul.nav-links.active li:nth-child(4) { --delay: 0.4s; }
+
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
     }
 
     main {
-      padding: 6rem 2rem 2rem;
+      padding-top: 100px;
+    }
+
+    section#landing {
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .container {
       max-width: 900px;
       margin: auto;
+      padding: 1rem 2rem;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
-      text-align: center;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       margin-top: 2rem;
-      margin-bottom: 1rem;
     }
 
     footer {
-      background-color: #004d40;
-      color: #fff;
+      background: #004d40;
+      color: white;
       padding: 2rem;
       display: flex;
       flex-wrap: wrap;
@@ -96,7 +158,7 @@
 
     footer div {
       flex: 1 1 200px;
-      margin: 1rem 0;
+      margin-bottom: 1rem;
     }
 
     footer h4 {
@@ -104,7 +166,7 @@
     }
 
     footer a {
-      color: #fff;
+      color: white;
       text-decoration: none;
       display: block;
       margin-bottom: 0.5rem;
@@ -114,89 +176,43 @@
       text-decoration: underline;
     }
 
-    /* Mobile styles */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .mobile-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 50%;
-        height: 100%;
-        background-color: #fff;
-        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-        transition: right 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        padding: 2rem 1rem;
-        z-index: 1000;
-      }
-
-      .mobile-menu.open {
-        right: 0;
-      }
-
-      .mobile-menu a {
-        margin: 1rem 0;
-        text-decoration: none;
-        font-weight: 600;
-        color: #004d40;
-        font-size: 1.2rem;
-      }
-
-      .mobile-menu .close-icon {
-        align-self: flex-end;
-        font-size: 1.4rem;
-        cursor: pointer;
-        margin-bottom: 1.5rem;
-      }
+    footer small {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <header>
+  <header id="navbar">
     <div class="logo">
       <img src="logo.png" alt="KukuSoko Logo" />
     </div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <nav>
-      <ul>
+      <ul class="nav-links" id="navLinks">
         <li><a href="#">Home</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <div class="close-icon" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
-      <a href="#">🏠 Home</a>
-      <a href="#features">✨ Features</a>
-      <a href="#about">📖 About</a>
-      <a href="#contact">📞 Contact</a>
-    </div>
   </header>
 
   <main>
-    <section>
-      <h1 style="color:#00796b;">KukuSoko – Farm•Connect•Thrive</h1>
-      <p style="text-align:center; font-size:1.1rem; margin-top:0.5rem;">
-        The #1 platform empowering poultry farmers across Kenya.
-      </p>
-      <div style="text-align:center; margin-top:1.5rem;">
-        <a href="#features" style="background:#00796b; color:#fff; padding:0.8rem 1.5rem; border-radius:5px; text-decoration:none; font-weight:600;">Start Aggregating</a>
+    <section id="landing">
+      <div class="container">
+        <h1>Soko la Kuku</h1>
+        <p>The #1 platform empowering poultry farmers and aggregators across Kenya.</p>
       </div>
     </section>
 
-    <section id="features">
+    <section class="container" id="features">
       <h2>Features</h2>
       <ul>
         <li>Inventory management & live market pricing</li>
@@ -206,9 +222,9 @@
       </ul>
     </section>
 
-    <section id="about">
+    <section class="container" id="about">
       <h2>About Us</h2>
-      <p>KukuSoko connects poultry farmers, aggregators, and buyers with powerful tools to streamline operations and grow profits — all built for rural conditions.</p>
+      <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
     </section>
   </main>
 
@@ -228,16 +244,22 @@
       <a href="#">Twitter</a>
       <a href="#">Instagram</a>
     </div>
-    <div style="width: 100%; text-align: center; margin-top: 1rem;">
-      <small>&copy; 2025 KukuSoko. All rights reserved.</small>
-    </div>
+    <small>&copy; 2025 KukuSoko. All rights reserved.</small>
   </footer>
 
   <script>
     function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('open');
+      document.getElementById('navLinks').classList.toggle('active');
     }
+
+    window.addEventListener('scroll', function () {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
   </script>
 </body>
-  </html>
+        </html>
