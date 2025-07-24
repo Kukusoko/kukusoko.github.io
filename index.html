@@ -1,196 +1,88 @@
-<!DOCTYPE html><html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KukuSoko</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-      :root {
-        --primary: #1a73e8;
-        --bg: #ffffff;
-        --text: #333333;
-        --muted: #777;
-        --spacing: 2rem;
-        --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KukuSoko</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }header {
+  background: linear-gradient(135deg, #ff8800, #ff5e62);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
 
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    scroll-behavior: smooth;
-  }
+header h1 {
+  margin: 0;
+  font-size: 3rem;
+}
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+.section {
+  padding: 3rem 1rem;
+  text-align: center;
+}
 
-  .logo img {
-    height: 60px;
-  }
+.section:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease-in-out;
+}
 
-  nav a {
-    margin: 0 1rem;
-    text-decoration: none;
-    color: var(--text);
-    font-weight: 500;
-  }
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
 
-  nav a:hover {
-    color: var(--primary);
-  }
+.carousel-item {
+  min-width: 300px;
+  flex: 0 0 auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  scroll-snap-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  section {
-    padding: 3rem 2rem;
-    max-width: 1000px;
-    margin: auto;
-  }
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
 
-  h1, h2 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-
-  p {
-    margin-bottom: 0.8rem;
-    color: var(--muted);
-  }
-
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-
-  .feature {
-    padding: 1.5rem;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    text-align: center;
-    background: #f9f9f9;
-  }
-
-  .feature i {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.9rem;
-    background: #f4f4f4;
-    color: var(--muted);
-  }
-
-  .scroll-indicator {
-    text-align: center;
-    margin-top: 1rem;
-    animation: bounce 2s infinite;
-    color: var(--primary);
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  .top-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--primary);
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    display: none;
-  }
-
-  .top-button.show {
-    display: block;
-  }
-</style>
-
-  </head>
-  <body>
-    <header>
-      <div class="logo">
-        <img src="logo.png" alt="KukuSoko Logo" />
+  </style>
+</head><body>
+  <header>
+    <h1>KukuSoko</h1>
+    <p>Your one-stop poultry marketplace</p>
+  </header>  <div class="section">
+    <h2>Why KukuSoko?</h2>
+    <p>Connecting farmers, buyers, and aggregators in one easy-to-use platform.</p>
+  </div>  <div class="section">
+    <h2>Carousel Highlights</h2>
+    <div class="carousel">
+      <div class="carousel-item">
+        <h3>Reliable Network</h3>
+        <p>Build trust with verified sellers and aggregators.</p>
       </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#features">Features</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header><section id="about">
-  <h1>Welcome to KukuSoko</h1>
-  <p>KukuSoko is your trusted digital market for poultry aggregation — empowering smallholder farmers and connecting buyers to affordable, fresh chicken products.</p>
-  <div class="scroll-indicator">
-    <i class="fas fa-angle-down fa-2x"></i>
-  </div>
-</section>
-
-<section id="features">
-  <h2>Key Features</h2>
-  <div class="features">
-    <div class="feature">
-      <i class="fas fa-mobile-alt"></i>
-      <h3>Mobile Friendly</h3>
-      <p>Access KukuSoko anywhere, anytime with ease.</p>
+      <div class="carousel-item">
+        <h3>Real-Time Data</h3>
+        <p>Track stock, sales, and trends easily.</p>
+      </div>
+      <div class="carousel-item">
+        <h3>Localized Support</h3>
+        <p>Tailored for your region and market needs.</p>
+      </div>
     </div>
-    <div class="feature">
-      <i class="fas fa-language"></i>
-      <h3>Bilingual Interface</h3>
-      <p>Switch between English and Swahili instantly.</p>
-    </div>
-    <div class="feature">
-      <i class="fas fa-database"></i>
-      <h3>Live Data</h3>
-      <p>Track stock levels, orders, and market insights in real time.</p>
-    </div>
-    <div class="feature">
-      <i class="fas fa-users"></i>
-      <h3>Agent-Based Selling</h3>
-      <p>Empower your sales agents with tools that work offline & online.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2>Get In Touch</h2>
-  <p>We're building the future of chicken aggregation. Join us.</p>
-  <p>Email: <a href="mailto:kukusokoni@gmail.com">kukusokoni@gmail.com</a></p>
-</section>
-
-<footer>
-  <p>&copy; 2025 KukuSoko. All rights reserved.</p>
-</footer>
-
-<button class="top-button" onclick="scrollToTop()">Top</button>
-
-<script>
-  window.onscroll = function() {
-    const btn = document.querySelector('.top-button');
-    btn.classList.toggle('show', window.scrollY > 300);
-  };
-
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
-
-  </body>
-</html>
+  </div>  <div class="section">
+    <h2>Join Us</h2>
+    <p>Be part of the smart poultry revolution today.</p>
+  </div>  <footer>
+    <p>&copy; 2025 KukuSoko. All rights reserved.</p>
+  </footer>
+</body></html>
