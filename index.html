@@ -1,209 +1,157 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KukuSoko — Farm • Connect • Thrive</title>
+  <title>KukuSoko - Farm • Connect • Thrive</title>
   <link rel="icon" href="assets/kukusoko-logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a2e0e6e6e0.js" crossorigin="anonymous"></script>
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       font-family: 'Inter', sans-serif;
-    }body {
-  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
-  color: #333;
-}
+    }
 
-header {
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  z-index: 999;
-}
+    body {
+      background: linear-gradient(to bottom right, #e0f7fa, #f1fff5);
+      color: #333;
+    }
 
-.logo img {
-  height: 60px;
-}
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
 
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-}
+    .logo img {
+      height: 60px;
+    }
 
-nav ul li a {
-  text-decoration: none;
-  color: #004d40;
-  font-weight: 500;
-  transition: color 0.3s;
-}
+    nav {
+      display: flex;
+      align-items: center;
+    }
 
-nav ul li a:hover {
-  color: #00796b;
-}
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
 
-.menu-toggle {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #004d40;
-}
+    .nav-links a {
+      text-decoration: none;
+      color: #004d40;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
 
-.hero {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: linear-gradient(to bottom right, #e0f7fa, #d0f0e0);
-}
+    .nav-links a:hover {
+      color: #00796b;
+    }
 
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #004d40;
-  margin-bottom: 1rem;
-  animation: fadeInDown 1s ease;
-}
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: #004d40;
+      cursor: pointer;
+    }
 
-.hero p {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 2rem;
-}
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 60%;
+        background: #004d40;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 3rem 2rem;
+        transition: right 0.3s ease-in-out;
+      }
 
-.hero .cta {
-  background-color: #00796b;
-  color: #fff;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  font-weight: 600;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
+      .nav-links a {
+        color: #fff;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
 
-.hero .cta:hover {
-  background-color: #004d40;
-}
+      .nav-links.active {
+        right: 0;
+      }
 
-section.features {
-  padding: 4rem 2rem;
-  background: #f1fdfc;
-}
+      .menu-toggle {
+        display: block;
+      }
 
-.features h2 {
-  text-align: center;
-  color: #004d40;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
+      .close-btn {
+        align-self: flex-end;
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: #fff;
+        cursor: pointer;
+      }
+    }
 
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
+    .hero {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(to bottom right, #e0f7fa, #ccffd8);
+    }
 
-.feature {
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: transform 0.3s;
-}
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #004d40;
+      animation: slideIn 1s ease;
+    }
 
-.feature:hover {
-  transform: translateY(-5px);
-}
+    .hero p {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      color: #00695c;
+    }
 
-.feature h3 {
-  color: #00796b;
-  margin-bottom: 1rem;
-}
+    .hero .cta {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background: #00796b;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-footer {
-  background-color: #004d40;
-  color: #fff;
-  padding: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+    .hero .cta:hover {
+      background: #004d40;
+    }
 
-footer div {
-  flex: 1 1 200px;
-  margin: 1rem 0;
-}
-
-footer h4 {
-  margin-bottom: 1rem;
-}
-
-footer a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: -60%;
-    width: 60%;
-    height: 100vh;
-    background: #e0f7fa;
-    padding-top: 5rem;
-    gap: 2rem;
-    transition: right 0.3s ease;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-
-  nav ul.active {
-    right: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-close {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-
-  .logo img {
-    height: 70px;
-  }
-
-  header {
-    flex-direction: row;
-  }
-}
-
-@keyframes fadeInDown {
-  0% { opacity: 0; transform: translateY(-20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
-<body>  <header>
+<body>
+  <header>
     <div class="logo">
       <img src="logo.png" alt="KukuSoko Logo" />
     </div>
@@ -211,60 +159,29 @@ footer a:hover {
       <i class="fas fa-bars"></i>
     </div>
     <nav>
-      <ul id="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <span class="nav-close" onclick="toggleMenu()"><i class="fas fa-times"></i></span>
-      </ul>
+      <div class="nav-links" id="navLinks">
+        <div class="close-btn" onclick="toggleMenu()">
+          <i class="fas fa-times"></i>
+        </div>
+        <a href="#">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
-  </header>  <section class="hero">
-    <h1>KukuSoko — Farm • Connect • Thrive</h1>
-    <p><strong>Empowering Poultry Futures.</strong></p>
-    <a href="#features" class="cta">Track Prices Now</a>
-  </section>  <section class="features" id="features">
-    <h2>Platform Highlights</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <h3><i class="fas fa-chart-line"></i> Live Market Prices</h3>
-        <p>Access real-time chicken market rates and trends in your area.</p>
-      </div>
-      <div class="feature">
-        <h3><i class="fas fa-store"></i> Smart Inventory</h3>
-        <p>Track feed, chicks, and sales with one click inventory tools.</p>
-      </div>
-      <div class="feature">
-        <h3><i class="fas fa-users"></i> Farmer Network</h3>
-        <p>Connect with nearby farmers, aggregators & buyers in one app.</p>
-      </div>
-      <div class="feature">
-        <h3><i class="fas fa-language"></i> Multilingual Support</h3>
-        <p>Use KukuSoko in Kiswahili, English, or your local dialect.</p>
-      </div>
-    </div>
-  </section>  <footer id="contact">
-    <div>
-      <h4>Useful Links</h4>
-      <a href="#about">About</a>
-      <a href="#features">Features</a>
-    </div>
-    <div>
-      <h4>Location</h4>
-      <p>Lumakanda, Kakamega County</p>
-    </div>
-    <div>
-      <h4>Connect With Us</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-      <a href="#">Instagram</a>
-    </div>
-    <div style="width: 100%; text-align: center; margin-top: 1rem;">
-      <small>&copy; 2025 KukuSoko. All rights reserved.</small>
-    </div>
-  </footer>  <script>
+  </header>
+
+  <section class="hero">
+    <h1>KukuSoko – Farm•Connect•Thrive</h1>
+    <p>Empowering local poultry farmers for a smarter marketplace.</p>
+    <button class="cta">Track Inventory Now</button>
+  </section>
+
+  <script>
     function toggleMenu() {
-      document.getElementById('nav-links').classList.toggle('active');
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('active');
     }
-  </script></body>
-  </html>
+  </script>
+</body>
+</html>
