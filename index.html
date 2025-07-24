@@ -1,73 +1,243 @@
-<!DOCTYPE html><html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kukusoko</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#3CA15F',
-              lightbg: '#f6fff7',
-            },
-          },
-        },
-      };
-    </script>
-  </head>
-  <body class="bg-lightbg text-gray-800">
-    <!-- Navbar -->
-    <header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-md shadow-sm transition-all">
-      <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-          <img src="logo.png" alt="Kukusoko Logo" class="h-10 w-auto sm:h-12" />
-        </div>
-        <nav class="hidden md:flex space-x-6 font-medium">
-          <a href="#features" class="hover:text-primary">Features</a>
-          <a href="#about" class="hover:text-primary">About</a>
-          <a href="#contact" class="hover:text-primary">Contact</a>
-        </nav>
-        <button id="menuToggle" class="md:hidden text-3xl text-primary">
-          ☰
-        </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KukuSoko - Empowering Poultry Farmers</title>
+  <link rel="icon" type="image/png" href="assets/kukusoko-logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #e0f7fa, #f0fff0);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      transition: background 0.3s ease;
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00796b;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    main {
+      padding: 6rem 2rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background-color: #004d40;
+      color: #fff;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    footer div {
+      flex: 1 1 200px;
+      margin: 1rem 0;
+    }
+
+    footer h4 {
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 50%;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 1rem;
+        z-index: 1000;
+      }
+
+      .mobile-menu.open {
+        right: 0;
+      }
+
+      .mobile-menu a {
+        margin: 1rem 0;
+        text-decoration: none;
+        font-weight: 600;
+        color: #004d40;
+        font-size: 1.2rem;
+      }
+
+      .mobile-menu .close-icon {
+        align-self: flex-end;
+        font-size: 1.4rem;
+        cursor: pointer;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="KukuSoko Logo" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="close-icon" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
+      <a href="#">🏠 Home</a>
+      <a href="#features">✨ Features</a>
+      <a href="#about">📖 About</a>
+      <a href="#contact">📞 Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1 style="color:#00796b;">KukuSoko – Farm•Connect•Thrive</h1>
+      <p style="text-align:center; font-size:1.1rem; margin-top:0.5rem;">
+        The #1 platform empowering poultry farmers across Kenya.
+      </p>
+      <div style="text-align:center; margin-top:1.5rem;">
+        <a href="#features" style="background:#00796b; color:#fff; padding:0.8rem 1.5rem; border-radius:5px; text-decoration:none; font-weight:600;">Start Aggregating</a>
       </div>
-    </header><!-- Mobile Menu -->
-<div id="mobileMenu" class="fixed top-0 right-0 w-1/2 h-full bg-white/90 backdrop-blur-lg z-50 p-6 hidden flex-col space-y-6 transition-transform transform translate-x-full">
-  <div class="flex justify-end">
-    <button id="closeMenu" class="text-3xl text-primary">×</button>
-  </div>
-  <a href="#features" class="text-lg font-semibold text-gray-700 hover:text-primary">📦 Features</a>
-  <a href="#about" class="text-lg font-semibold text-gray-700 hover:text-primary">ℹ️ About</a>
-  <a href="#contact" class="text-lg font-semibold text-gray-700 hover:text-primary">📞 Contact</a>
-</div>
+    </section>
 
-<!-- Hero Section -->
-<section class="h-screen flex items-center justify-center text-center px-6 bg-gradient-to-br from-green-100 via-white to-green-50">
-  <div class="space-y-6 max-w-2xl">
-    <h1 class="text-3xl sm:text-5xl font-bold text-primary animate-pulse">Kukusoko – Farm • Connect • Thrive</h1>
-    <p class="text-lg text-gray-600 italic">Chicken. Farmers. Market. 🐔</p>
-    <a href="#features" class="inline-block mt-4 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-green-700 transition">Explore Features</a>
-  </div>
-</section>
+    <section id="features">
+      <h2>Features</h2>
+      <ul>
+        <li>Inventory management & live market pricing</li>
+        <li>Multilingual toggle (Swahili + English)</li>
+        <li>Farmer profiles and order tracking</li>
+        <li>Push notifications + WhatsApp integration</li>
+      </ul>
+    </section>
 
-<!-- Script -->
-<script>
-  const menuToggle = document.getElementById('menuToggle');
-  const closeMenu = document.getElementById('closeMenu');
-  const mobileMenu = document.getElementById('mobileMenu');
+    <section id="about">
+      <h2>About Us</h2>
+      <p>KukuSoko connects poultry farmers, aggregators, and buyers with powerful tools to streamline operations and grow profits — all built for rural conditions.</p>
+    </section>
+  </main>
 
-  menuToggle.addEventListener('click', () => {
-    mobileMenu.classList.remove('translate-x-full');
-    mobileMenu.classList.add('flex');
-  });
+  <footer id="contact">
+    <div>
+      <h4>Useful Links</h4>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+    </div>
+    <div>
+      <h4>Location</h4>
+      <p>Lumakanda, Kakamega County</p>
+    </div>
+    <div>
+      <h4>Connect With Us</h4>
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div style="width: 100%; text-align: center; margin-top: 1rem;">
+      <small>&copy; 2025 KukuSoko. All rights reserved.</small>
+    </div>
+  </footer>
 
-  closeMenu.addEventListener('click', () => {
-    mobileMenu.classList.add('translate-x-full');
-    setTimeout(() => mobileMenu.classList.remove('flex'), 300);
-  });
-</script>
-
-  </body>
-</html>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+  </script>
+</body>
+  </html>
