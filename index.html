@@ -1,148 +1,160 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KukuSoko - Poultry Aggregation Platform</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <title>KukuSoko - Empowering Poultry Farmers</title>
+  <link rel="icon" type="image/png" href="assets/kukusoko-logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --primary: #005c4b;
-      --secondary: #00897b;
-      --accent: #f2f2f2;
-      --text: #333;
-    }
     * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #ffffff);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    header {
-      background: transparent;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      backdrop-filter: blur(8px);
-    }
-    .logo {
-      height: 60px;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    nav ul li a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .hero {
-      padding-top: 100px;
-      text-align: center;
-      padding: 100px 20px;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-    .section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 10px;
-    }
-    .carousel img {
-      height: 150px;
-      border-radius: 10px;
-    }
-    footer {
-      background-color: var(--primary);
-      color: white;
-      padding: 30px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    footer div {
-      flex: 1 1 200px;
-      margin-bottom: 20px;
-    }
-    footer h4 {
-      margin-bottom: 10px;
-    }
-    footer a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin-bottom: 6px;
-    }
-    .social-icons a {
-      margin-right: 10px;
-      color: white;
-      font-size: 1.2rem;
-    }
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        background: var(--accent);
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        display: none;
-      }
-    }
+    }body {
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 100;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00796b;
+}
+
+.container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+ul {
+  margin-bottom: 1rem;
+  padding-left: 1.2rem;
+}
+
+footer {
+  background-color: #004d40;
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+footer div {
+  flex: 1 1 200px;
+  margin: 1rem 0;
+}
+
+footer h4 {
+  margin-bottom: 1rem;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
   </style>
-</head>
-<body>
+</head><body>
   <header>
-    <img src="logo.png" alt="KukuSoko Logo" class="logo" />
+    <div class="logo">
+      <img src="assets/kukusoko-logo.png" alt="KukuSoko Logo" />
+    </div>
     <nav>
       <ul>
-        <li><a href="#about">About</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-  </header>  <section class="hero">
+  </header>  <main class="container">
     <h1>Welcome to KukuSoko</h1>
-    <p>The #1 platform empowering poultry farmers and aggregators across Kenya.</p>
-  </section>  <section class="section" id="features">
-    <h2>Features</h2>
-    <ul>
-      <li>Inventory management & live market pricing</li>
-      <li>Multilingual toggle (Swahili + English)</li>
-      <li>Farmer profiles and order tracking</li>
-      <li>Push notifications + WhatsApp integration</li>
-    </ul>
-  </section>  <section class="carousel">
-    <img src="https://source.unsplash.com/300x150/?chicken" alt="Chicken 1" />
-    <img src="https://source.unsplash.com/300x150/?farm" alt="Farm" />
-    <img src="https://source.unsplash.com/300x150/?poultry" alt="Poultry" />
-  </section>  <section class="section" id="about">
-    <h2>About Us</h2>
-    <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
-  </section>  <footer>
+    <p style="text-align: center;">The #1 platform empowering poultry farmers and aggregators across Kenya.</p><section id="features">
+  <h2>Features</h2>
+  <ul>
+    <li>Inventory management &amp; live market pricing</li>
+    <li>Multilingual toggle (Swahili + English)</li>
+    <li>Farmer profiles and order tracking</li>
+    <li>Push notifications + WhatsApp integration</li>
+  </ul>
+</section>
+
+<section>
+  <p>Chicken 1 &nbsp;&nbsp; Farm &nbsp;&nbsp; Poultry</p>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>KukuSoko brings together poultry farmers, aggregators, and buyers to create a smart, fair, and efficient poultry market. We’re on a mission to digitize and transform rural chicken farming through innovation.</p>
+</section>
+
+  </main>  <footer id="contact">
     <div>
       <h4>Useful Links</h4>
       <a href="#about">About</a>
@@ -150,30 +162,16 @@
     </div>
     <div>
       <h4>Location</h4>
-      <p>Lumakanda, Kakamega County, Kenya</p>
+      <p>Lumakanda, Kakamega County</p>
     </div>
     <div>
-      <h4>Follow Us</h4>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-      </div>
+      <h4>Connect With Us</h4>
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
     </div>
-    <div>
-      <p>&copy; 2025 KukuSoko. All rights reserved.</p>
+    <div style="width: 100%; text-align: center; margin-top: 1rem;">
+      <small>&copy; 2025 KukuSoko. All rights reserved.</small>
     </div>
-  </footer>  <!-- Firebase SDK -->  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDZJ52pOpM4EJjZfRNSLCn2Or9VFsTEfrA",
-      authDomain: "kukusoko.firebaseapp.com",
-      projectId: "kukusoko",
-      storageBucket: "kukusoko.firebasestorage.app",
-      messagingSenderId: "854606179651",
-      appId: "1:854606179651:web:9742df9941cc66536e93f6",
-      measurementId: "G-WW0DHDR43N"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script></body>
-</html>
+  </footer>
+</body></html>
